@@ -1,0 +1,37 @@
+---
+title: "DATA 605 Homework 2"
+subtitle: "ASSIGNMENT 2"
+author: "Stephen Haslett"
+date: "9/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+```
+
+## Problem Set 1
+
+#### (1) Show that $A^{T} A \ne AA^{T}$ in general. (Proof and demonstration.)
+
+```{r solution1}
+
+```
+
+#### (2) For a special type of square matrix $A$, we get $A^{T} A = AA^{T}$. Under what conditions could this be true? (Hint: The Identity matrix $I$ is an example of such a matrix).
+
+```{r solution2}
+
+```
+
+## Problem Set 2
+
+Matrix factorization is a very important problem. There are supercomputers built just to do matrix factorizations. Every second you are on an airplane, matrices are being
+factorized. Radars that track fights use a technique called Kalman filtering. At the heart of Kalman Filtering is a Matrix Factorization operation. Kalman Filters are solving linear
+systems of equations when they track your flight using radars.
+
+#### Write an R function to factorize a square matrix A into LU or LDU, whichever you prefer.
+
+
+
