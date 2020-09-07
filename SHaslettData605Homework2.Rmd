@@ -80,5 +80,53 @@ systems of equations when they track your flight using radars.
 
 #### Write an R function to factorize a square matrix A into LU or LDU, whichever you prefer.
 
+The following function factorizes square matrix A into LU.
 
+```{r set2solution}
+# Function that factorizes A into LU.
+a_to_lu_factorization <- function(A) {
+  # Check that passed matrix 'A' is squared. If not, print an error message and return 'NA'.
+  if (dim(A)[1] != dim(A)[2]) {
+    print('Only squared matrices are valid. Please ensure you are passing the correct matrix type.')
 
+    return(NA)
+  }
+  else {
+    # Otherwise, continue with calculations and return the expected result.
+    L <- matrix(c(rep(0, nrow(A) * nrow(A))), nrow = nrow(A))
+
+    # This is not a neccessary variable assignment, but for the sake of readability,
+    # assign the value of passed parameter 'A', to a new variable 'U'.
+    U <- A
+
+    for (column_n in 1:(nrow(U))) {
+      if (column_n <= nrow(U)) {
+        L[column_n:nrow(U), column_n] <- U[column_n:nrow(U), column_n] / U[column_n, column_n]
+      }
+
+      if (column_n < nrow(U)) {
+        for(k in column_n:(nrow(U) -1)) {
+          k <- k + 1
+
+          # Create 0 row values.
+          U[k, ] <- U[k, ] + (U[column_n, ] * (-1 * U[k, column_n] / U[column_n, column_n])) 
+        }
+      }
+    }
+
+    # Return list of results.
+    return(list(L, U))
+  }
+}
+```
+
+```{r set2example}
+# Define a sample matrix to pass into our function.
+sample_matrix_a <- matrix(c(-3, 1, 2, 6, -5, 2, 9, 5, -6), nrow = 3, byrow = TRUE)
+
+# Run the function.
+LU <- a_to_lu_factorization(sample_matrix_a)
+
+# Display the output of the function.
+LU
+```
