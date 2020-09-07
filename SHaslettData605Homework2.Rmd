@@ -17,7 +17,7 @@ library(pracma)
 
 If we take matrix $A$ to be of the type $m \times n$, then $A^{T}$ will be of the type $n \times m$ as by definition, $A^{T}$ is a flipped version of $A$ (_i.e row 1 of $A$ becomes column 1 of $A^{T}$, row 2 of $A$ becomes column 2 of $A^{T}$, etc._).
 
-Multiplying $A^{T}$ ($n \times m$) by $A$ ($m \times n$) will result in a square $n \times n$ matrix. If we reverse the multplication so that it is $A$ ($m \times n$) by $A^{T}$ ($n \times m$), then we will get an $m \times m$ matrix.
+Multiplying $A^{T}$ ($n \times m$) by $A$ ($m \times n$) will result in a square $n \times n$ matrix. If we reverse the multiplication so that it is $A$ ($m \times n$) by $A^{T}$ ($n \times m$), then we will get an $m \times m$ matrix.
 
 Therefore, as per the above logic, if $m \ne n$, the result of $A^{T} A$ ($n \times n$) will always be different to that of $AA^{T}$ ($m \times m$). The resulting matrices will not be equal and so we can assert that **$A^{T} A \ne AA^{T}$**.
 
@@ -36,18 +36,41 @@ A
 # Display Matrix A transposed.
 At
 
-# Multiple A x At.
+# Multiple A x At. This results in a 2 X 2 matrix.
 A %*% At
 
-# Multiple At x A.
+# Multiple At x A. This results in a 4 x 4 matrix.
 At %*% A
 ```
 
-#### (2) For a special type of square matrix $A$, we get $A^{T} A = AA^{T}$. Under what conditions could this be true? (Hint: The Identity matrix $I$ is an example of such a matrix).
+**Answer:** As per the above example, multiplying $A \times A^{T}$ results in a 2 x 2 matrix, whereas $A^{T} \times A$ results in a 4 x 4 matrix and thus $A^{T} A \ne AA^{T}$.
+  
+#### (2) For a special type of square matrix $A$, we get $A^{T} A = AA^{T}$. Under what conditions could this be true?
+
+**Answer:** This is true for symmetric matrices where $A = A^{T}$.
+
+Again, this is best demonstrated by an example:
 
 ```{r solution2}
+# Define Matrix A, and Matrix At.
+A <- matrix(c(1, 2, 0, 2, 1, 0, 0, 0, 5), nrow = 3, byrow = TRUE)
+At = t(A)
 
+# Display Matrix A.
+A
+
+# Display Matrix At.
+At
+
+# Confirm that Matrix A is equal to Matrix At.
+A == At
+
+# Confirm that AtA = AAt.
+(A %*% At) == (At %*% A)
 ```
+
+
+
 
 ## Problem Set 2
 
