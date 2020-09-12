@@ -1,0 +1,46 @@
+---
+title: "DATA 605 Discussion 2"
+subtitle: "Exercise C16, Chapter VS, Page 286"
+author: "Stephen Haslett"
+date: "9/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+```
+
+### Exercise C16 problem
+![](/Users/stephenhaslett/Data605/ExerciseC16Page286.png)
+
+
+### Exercise C16 solution
+To solve this problem, I will utilize the **_rref()_** (_Reduced Row Echelon Form_) function provided by R's **pracma**
+(_Practical Numerical Math Functions_) package - https://www.rdocumentation.org/packages/pracma/versions/1.9.9/topics/rref.
+
+```{r c16solution}
+# Create matrices for 'b' and 'W' so we can solve the problem in R.
+matrix_b <- matrix(c(1, 1, 0, 1), 4, 1)
+matrix_w <- matrix(c(1, 2, -1, 1, 1, 0, 3, 1, 2, 1, 1, 2), 4, 3)
+
+# Combine matrices b and W so we can check for the existence of a
+# linear combination of vectors equal to b in the resulting span. 
+matrix_b_w_combined <- cbind(matrix_w, matrix_b)
+
+# Transform the combined matrix to 'reduced row echelon form'. 
+reduced_row_form <- rref(matrix_b_w_combined)
+
+# Output the result.
+reduced_row_form
+```
+
+In order for _b_ to be considered an element of _W (in the subspace W)_, There must be a linear combination of vectors in the combined span _Wb_ equal to _b_.
+
+'b' consists of the values 1, 1, 0, 1. In the "_reduced_row_form_" span above, the diagonal line cutting through the span consists of the
+values 1, 1, 1, 0 which is a linear combination of vectors equal to b, and therefore we can say that "**_b is in the subspace W_**".
+
+**Answer:** _b is in the subspace W_.
+
+
+
