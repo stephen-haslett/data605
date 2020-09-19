@@ -14,24 +14,79 @@ library(Matrix)
 
 ## Problem Set 1
 
-#### In this problem, we'll verify using R that SVD and Eigenvalues are related as worked out in the weekly module. Given a 3 X 2 matrix A, write code in R to compute $X = AA^T$ and $Y = A^TA$. Then, compute the eigenvalues and eigenvectors of X and Y using the built-in commands in R. Then, compute the left-singular, singular values, and right-singular vectors of A using
-the svd command.
+#### Verify using R that SVD and Eigenvalues are related.
 
-![](/Users/stephenhaslett/Data605/MatrixA.png)
+**A. Given a 3 X 2 matrix A, write code in R to compute $X = AA^T$ and $Y = A^TA$.**
+$$A = \begin{bmatrix}1 & 2 & 3 \\ -1 & 0 & 4\end{bmatrix}$$
 
-**A. _Compute $X = AA^T$ and $Y = A^TA$._**
-
-```{r Set-1}
+```{r Set-1A}
 # Define matrix A.
 A <- matrix(c(1, 2, 3, -1, 0, 4), 2, 3)
 
 # Calculate X and Y.
 X <- A %*% t(A)
 Y <- t(A) %*% A
+```
 
+**B. Compute the eigenvalues and eigenvectors of X and Y using the built-in commands in R.**
+
+```{r Set-1B}
 # Compute the eigenvalues and eigenvectors of X and Y.
 eigens_x <- eigen(X)
 eigens_y <- eigen(Y)
+```
 
-# 
+**_Eigenvalues of X._**
+
+```{r Set-1C-x-eigenvalues}
+eigens_x$values
+```
+
+**_Eigenvectors of X._**
+
+```{r Set-1C-x-eigenvectors}
+eigens_x$vectors
+```
+
+**_Eigenvalues of Y._**
+
+```{r Set-1C-y-eigenvalues}
+eigens_y$values
+```
+
+**_Eigenvectors of Y._**
+
+```{r Set-1C-y-eigenvectors}
+eigens_y$vectors
+```
+
+**C. Compute the left-singular, singular values, and right-singular vectors of A using the svd command.**
+
+```{r Set-1C}
+# Compute the left-singular vector of A.
+left_singular_vectors <- svd(A)$u
+
+# Compute the singular values of A.
+singular_values <- svd(A)$d
+
+# Compute the right-singular vector of A.
+right_singular_vectors <- svd(A)$v
+```
+
+**_Left singular vectors of A._**
+
+```{r Set-1C-left-singular-vectors}
+left_singular_vectors
+```
+
+**_Singular values of A._**
+
+```{r Set-1C-singular-values}
+singular_values
+```
+
+**_Right singular vectors of A._**
+
+```{r Set-1C-right-singular-vectors}
+right_singular_vectors
 ```
