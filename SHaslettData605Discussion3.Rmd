@@ -1,0 +1,37 @@
+---
+title: "DATA 605 Discussion 3"
+subtitle: "Exercise C12, Chapter E, Page 388"
+author: "Stephen Haslett"
+date: "9/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+```
+
+### Exercise C12 problem
+![](/Users/stephenhaslett/Data605/QuestionC12.png)
+
+
+### Exercise C12 solution
+To solve this problem, I will utilize the **_charpoly_** (_Characteristic Polynomial_) function provided by R's **pracma**
+(_Practical Numerical Math Functions_) package - https://www.rdocumentation.org/packages/pracma/versions/1.9.9/topics/charpoly.
+
+```{r c12solution}
+# Create the 4 x 4 matrix A.
+A <- matrix(c(1, 2, 1, 0, 1, 0, 1, 0, 2, 1, 1, 0, 3, 1, 0, 1), 4, 4)
+
+# Find the characteristic polynomial of matrix A.
+matrix_a_char_poly <- charpoly(A, info = TRUE)
+
+# Output the result.
+matrix_a_char_poly
+```
+
+
+**Answer:** _The characteristic polynomial of matrix A is $\lambda^4 -3\lambda^3 - 2\lambda^2 + 2\lambda + 2$_
+
+
+
