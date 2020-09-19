@@ -1,0 +1,37 @@
+---
+title: "DATA 605 Homework 4"
+subtitle: "ASSIGNMENT 4"
+author: "Stephen Haslett"
+date: "9/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(Matrix)
+```
+
+## Problem Set 1
+
+#### In this problem, we'll verify using R that SVD and Eigenvalues are related as worked out in the weekly module. Given a 3 X 2 matrix A, write code in R to compute $X = AA^T$ and $Y = A^TA$. Then, compute the eigenvalues and eigenvectors of X and Y using the built-in commands in R. Then, compute the left-singular, singular values, and right-singular vectors of A using
+the svd command.
+
+![](/Users/stephenhaslett/Data605/MatrixA.png)
+
+**A. _Compute $X = AA^T$ and $Y = A^TA$._**
+
+```{r Set-1}
+# Define matrix A.
+A <- matrix(c(1, 2, 3, -1, 0, 4), 2, 3)
+
+# Calculate X and Y.
+X <- A %*% t(A)
+Y <- t(A) %*% A
+
+# Compute the eigenvalues and eigenvectors of X and Y.
+eigens_x <- eigen(X)
+eigens_y <- eigen(Y)
+
+# 
+```
