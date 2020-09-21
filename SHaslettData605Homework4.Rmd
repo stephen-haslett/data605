@@ -90,3 +90,46 @@ singular_values
 ```{r Set-1C-right-singular-vectors}
 right_singular_vectors
 ```
+
+**D. Examine the two sets of singular vectors and show that they are indeed eigenvectors of X and Y.**
+
+```{r Set-1D-examination-x}
+# Compare the left singular vectors of A with the eigenvectors of X.
+left_singular_vectors
+eigens_x$vectors
+
+# Confirm that they are indeed equal.
+round(abs(left_singular_vectors)) == round(abs(eigens_x$vectors))
+```
+
+```{r Set-1D-examination-y}
+# Compare the right singular vectors of A with the eigenvectors of Y.
+right_singular_vectors
+eigens_y$vectors
+```
+
+**E. Show that the two non-zero eigenvalues of both X and Y are the same.**
+
+```{r Set-1E-value-comparision}
+# Compare the two non-zero eigenvalues of both X and Y to confirm that they the same.
+eigens_y$values
+eigens_x$values
+```
+
+**F. Show that the two non-zero eigenvalues of both X and Y are squares of the non-zero singular values of A.**
+```{r Set-1F-square}
+# Compare the two non-zero eigenvalues of both X and Y to confirm that they the same.
+eigens_x$values
+
+# Eigenvalues of Y.
+eigens_y$values
+
+# Singular values of A.
+singular_values^2
+
+# Confirm that the eigenvalues of X are squares of the non-zero singular values of A.
+round(abs(eigens_x$values[1:2])) == round(abs(singular_values^2))
+
+# Confirm that the eigenvalues of Y are squares of the non-zero singular values of A.
+round(abs(eigens_y$values[1:2])) == round(abs(singular_values^2))
+```
