@@ -133,3 +133,82 @@ round(abs(eigens_x$values[1:2])) == round(abs(singular_values^2))
 # Confirm that the eigenvalues of Y are squares of the non-zero singular values of A.
 round(abs(eigens_y$values[1:2])) == round(abs(singular_values^2))
 ```
+
+
+## Problem Set 2
+
+#### Write a function to compute the inverse of a well-conditioned full-rank square matrix using co-factors.
+
+Your function should have the following signature: B = myinverse(A) where A is a matrix and B is its inverse and AxB = I. The off-diagonal
+elements of I should be close to zero, if not zero. Likewise, the diagonal elements should be close to 1, if not 1.
+
+```{r Set-2-inverse-function}
+# Define the function myinverse().
+myinverse <- function(A) {
+  # Check if the passed matrix is a square matrix.
+  if (nrow(A) != ncol(A)) {
+    return('The provided matrix is not a square matrix.')
+  }
+
+  # Check to ensure that the passed matrix is invertable.
+  if (det(A) == 0) {
+    return('The provided matrix is not invertable.')
+  }
+
+  # Assign the matrix rows and columns to variables (rows and columns).
+  rows <- nrow(A)
+  columns <- ncol(A)
+
+  # Define the co-factor matrix.
+  cofactor_matrix <- diag(0, rows, columns)
+  for(i in 1:rows) {
+    for(j in 1:columns) {
+      # Populate the matrix with rows and columns.
+      cofactor_matrix[i,j] <- (-1) ^ (i + j) * det(A[-i, -j])
+    }
+  }
+
+  # Define the inverted matrix and return it.
+  inverted_matrix <- (t(cofactor_matrix) / det(A))
+
+  return(inverted_matrix)
+}
+```
+
+**Test the myinverse() function with a 3x3 matrix.**
+```{r Set-2-inverse-function-test-3x3}
+# Define the 3x3 matrix A.
+A <- matrix(c(1, 0, 5, 3, 1, 5, 3, 4, 0), 3, 3)
+A
+
+# Pass the matrix to the myinverse() function and print the inverted matrix.
+B <- myinverse(A)
+B
+
+# Check that the result is correct.
+accuracy_check <- solve(A)
+round(accuracy_check, 2) == round(B, 2)
+
+# Check that the off-diagonal elements of I are zero, or close to zero,
+# and that the diagonal elements are 1, or close to 1.
+round(A %*% B, 2)
+```
+
+**Test the myinverse() function with a 4x4 matrix.**
+```{r Set-2-inverse-function-test-4x4}
+# Define the 4x4 matrix A.
+A <- matrix(c(1, 6,-2, -3, 2, -8, 3, -6, -1, 0, 3, 16, -5, -2, 7, 9), 4, 4)
+A
+
+# Pass the matrix to the myinverse() function and print the inverted matrix.
+B <- myinverse(A)
+B
+
+# Check that the result is correct.
+accuracy_check <- solve(A)
+round(accuracy_check, 2) == round(B, 2)
+
+# Check that the off-diagonal elements of I are zero, or close to zero,
+# and that the diagonal elements are 1, or close to 1.
+round(A %*% B, 2)
+```
