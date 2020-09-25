@@ -1,0 +1,46 @@
+---
+title: "DATA 605 Discussion 5"
+subtitle: "Exercise 2, Chapter 1, Page 12"
+author: "Stephen Haslett"
+date: "9/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+```
+
+### Exercise 2 Problem
+Modify the program **CoinTosses** to toss a coin_n_ times and record whether or not the proportion of heads is within .1 of .5 (i.e., between .4 and .6).
+Have your program repeat this experiment 100 times. About how large must _n_ be so that approximately 95 out of 100 times the proportion of heads is between .4 and .6? 
+
+
+### Exercise 2 Solution
+
+```{r Exercise2Solution}
+# Define a vector to represent the coin that will be tossed in the experiment.
+coin <- c('H', 'T')
+
+# Simulate tossing the coin n times up to a maximum of 100 tosses.
+coin_tosses <- seq(from = 1, to = 100, by = 1)
+
+# Define a matrix to record the probability of a heads result.
+probability_of_heads <- matrix(NA, nrow = length(coin_tosses), ncol = 1)
+
+# Define a matrix to record the probability of a tails result.
+probability_of_tails <- matrix(NA, nrow = length(coin_tosses), ncol = 1)
+
+# Perform the coin tosses.
+for (toss in 1:length(coin_tosses)) {
+  coin_toss <- sample(coin, coin_tosses[toss], replace = TRUE)
+  probability_of_heads[toss, 1] <- length(which(coin_toss == 'H')) / coin_tosses[toss]
+  probability_of_tails[toss, 1] <- length(which(coin_toss == 'T')) / coin_tosses[toss] 
+}
+
+# Plot the results.
+plot(coin_tosses, probability_of_heads, xlab = 'Number of Tosses', ylab = 'Probability of Heads', type = 'l', font = 2, font.lab = 2)
+abline(h = 0.4, col = 'red', lwd = 1.5)
+abline(h = 0.5, col = 'blue', lwd = 1.5)
+abline(h = 0.6, col = 'red', lwd = 1.5)
+```
