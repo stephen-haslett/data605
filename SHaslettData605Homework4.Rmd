@@ -1,0 +1,214 @@
+---
+title: "DATA 605 Homework 4"
+subtitle: "ASSIGNMENT 4"
+author: "Stephen Haslett"
+date: "9/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(Matrix)
+```
+
+## Problem Set 1
+
+#### Verify using R that SVD and Eigenvalues are related.
+
+**A. Given a 3 X 2 matrix A, write code in R to compute $X = AA^T$ and $Y = A^TA$.**
+$$A = \begin{bmatrix}1 & 2 & 3 \\ -1 & 0 & 4\end{bmatrix}$$
+
+```{r Set-1A}
+# Define matrix A.
+A <- matrix(c(1, 2, 3, -1, 0, 4), 2, 3)
+
+# Calculate X and Y.
+X <- A %*% t(A)
+Y <- t(A) %*% A
+```
+
+**B. Compute the eigenvalues and eigenvectors of X and Y using the built-in commands in R.**
+
+```{r Set-1B}
+# Compute the eigenvalues and eigenvectors of X and Y.
+eigens_x <- eigen(X)
+eigens_y <- eigen(Y)
+```
+
+**_Eigenvalues of X._**
+
+```{r Set-1C-x-eigenvalues}
+eigens_x$values
+```
+
+**_Eigenvectors of X._**
+
+```{r Set-1C-x-eigenvectors}
+eigens_x$vectors
+```
+
+**_Eigenvalues of Y._**
+
+```{r Set-1C-y-eigenvalues}
+eigens_y$values
+```
+
+**_Eigenvectors of Y._**
+
+```{r Set-1C-y-eigenvectors}
+eigens_y$vectors
+```
+
+**C. Compute the left-singular, singular values, and right-singular vectors of A using the svd command.**
+
+```{r Set-1C}
+# Compute the left-singular vector of A.
+left_singular_vectors <- svd(A)$u
+
+# Compute the singular values of A.
+singular_values <- svd(A)$d
+
+# Compute the right-singular vector of A.
+right_singular_vectors <- svd(A)$v
+```
+
+**_Left singular vectors of A._**
+
+```{r Set-1C-left-singular-vectors}
+left_singular_vectors
+```
+
+**_Singular values of A._**
+
+```{r Set-1C-singular-values}
+singular_values
+```
+
+**_Right singular vectors of A._**
+
+```{r Set-1C-right-singular-vectors}
+right_singular_vectors
+```
+
+**D. Examine the two sets of singular vectors and show that they are indeed eigenvectors of X and Y.**
+
+```{r Set-1D-examination-x}
+# Compare the left singular vectors of A with the eigenvectors of X.
+left_singular_vectors
+eigens_x$vectors
+
+# Confirm that they are indeed equal.
+round(abs(left_singular_vectors)) == round(abs(eigens_x$vectors))
+```
+
+```{r Set-1D-examination-y}
+# Compare the right singular vectors of A with the eigenvectors of Y.
+right_singular_vectors
+eigens_y$vectors
+```
+
+**E. Show that the two non-zero eigenvalues of both X and Y are the same.**
+
+```{r Set-1E-value-comparision}
+# Compare the two non-zero eigenvalues of both X and Y to confirm that they the same.
+eigens_y$values
+eigens_x$values
+```
+
+**F. Show that the two non-zero eigenvalues of both X and Y are squares of the non-zero singular values of A.**
+```{r Set-1F-square}
+# Compare the two non-zero eigenvalues of both X and Y to confirm that they the same.
+eigens_x$values
+
+# Eigenvalues of Y.
+eigens_y$values
+
+# Singular values of A.
+singular_values^2
+
+# Confirm that the eigenvalues of X are squares of the non-zero singular values of A.
+round(abs(eigens_x$values[1:2])) == round(abs(singular_values^2))
+
+# Confirm that the eigenvalues of Y are squares of the non-zero singular values of A.
+round(abs(eigens_y$values[1:2])) == round(abs(singular_values^2))
+```
+
+
+## Problem Set 2
+
+#### Write a function to compute the inverse of a well-conditioned full-rank square matrix using co-factors.
+
+Your function should have the following signature: B = myinverse(A) where A is a matrix and B is its inverse and AxB = I. The off-diagonal
+elements of I should be close to zero, if not zero. Likewise, the diagonal elements should be close to 1, if not 1.
+
+```{r Set-2-inverse-function}
+# Define the function myinverse().
+myinverse <- function(A) {
+  # Check if the passed matrix is a square matrix.
+  if (nrow(A) != ncol(A)) {
+    return('The provided matrix is not a square matrix.')
+  }
+
+  # Check to ensure that the passed matrix is invertable.
+  if (det(A) == 0) {
+    return('The provided matrix is not invertable.')
+  }
+
+  # Assign the matrix rows and columns to variables (rows and columns).
+  rows <- nrow(A)
+  columns <- ncol(A)
+
+  # Define the co-factor matrix.
+  cofactor_matrix <- diag(0, rows, columns)
+  for(i in 1:rows) {
+    for(j in 1:columns) {
+      # Populate the matrix with rows and columns.
+      cofactor_matrix[i,j] <- (-1) ^ (i + j) * det(A[-i, -j])
+    }
+  }
+
+  # Define the inverted matrix and return it.
+  inverted_matrix <- (t(cofactor_matrix) / det(A))
+
+  return(inverted_matrix)
+}
+```
+
+**Test the myinverse() function with a 3x3 matrix.**
+```{r Set-2-inverse-function-test-3x3}
+# Define the 3x3 matrix A.
+A <- matrix(c(1, 0, 5, 3, 1, 5, 3, 4, 0), 3, 3)
+A
+
+# Pass the matrix to the myinverse() function and print the inverted matrix.
+B <- myinverse(A)
+B
+
+# Check that the result is correct.
+accuracy_check <- solve(A)
+round(accuracy_check, 2) == round(B, 2)
+
+# Check that the off-diagonal elements of I are zero, or close to zero,
+# and that the diagonal elements are 1, or close to 1.
+round(A %*% B, 2)
+```
+
+**Test the myinverse() function with a 4x4 matrix.**
+```{r Set-2-inverse-function-test-4x4}
+# Define the 4x4 matrix A.
+A <- matrix(c(1, 6,-2, -3, 2, -8, 3, -6, -1, 0, 3, 16, -5, -2, 7, 9), 4, 4)
+A
+
+# Pass the matrix to the myinverse() function and print the inverted matrix.
+B <- myinverse(A)
+B
+
+# Check that the result is correct.
+accuracy_check <- solve(A)
+round(accuracy_check, 2) == round(B, 2)
+
+# Check that the off-diagonal elements of I are zero, or close to zero,
+# and that the diagonal elements are 1, or close to 1.
+round(A %*% B, 2)
+```
