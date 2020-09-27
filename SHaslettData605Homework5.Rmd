@@ -1,0 +1,67 @@
+---
+title: "DATA 605 Homework 5"
+subtitle: "ASSIGNMENT 5"
+author: "Stephen Haslett"
+date: "9/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(Matrix)
+```
+
+#### Choose independently two numbers B and C at random from the interval [0, 1] with uniform density. Prove that B and C are proper probability distributions. Note that the point (B,C) is then chosen at random in the unit square.
+
+#### Find the probability that:
+
+##### (a) B + C < 1/2.
+
+```{r solutionA}
+
+```
+
+**Answer:** _ _
+
+
+##### (b) BC < 1/2.
+
+```{r solutionB}
+
+```
+
+**Answer:** _ _
+
+
+##### (c) |B − C| < 1/2.
+
+```{r solutionC}
+
+```
+
+**Answer:** _ _
+
+
+##### (d) max{B,C} < 1/2.
+
+```{r solutionD}
+
+```
+
+**Answer:** _ _
+
+
+##### (e) min{B,C} < 1/2.
+
+```{r solutionE}
+
+```
+
+**Answer:** _ _
+
+
+
+
+
+
