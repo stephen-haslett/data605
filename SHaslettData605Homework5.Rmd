@@ -19,19 +19,17 @@ The first step to solving this problem is to define **B** and **C**. To do this,
 **_n_** (_the number of observations we wish to make_), **_min_** (_the lower limit of the distribution_), and finally **_max_**, (_the upper limit of the distribution_).
 These arguments combined make this function is a good fit for defining the numbers **B** and **C** as per the assignment instructions.
 
-```{r defineBandC}
-# Randomly define B and C from the interval [0, 1].
+```{r DefineNumbers}
+# Randomly define numbers B and C from the interval [0, 1], with 100 observations.
 B <- runif(100, 0, 1)
 C <- runif(100, 0, 1)
-B
-C
 ```
 
 #### Find the probability that:
 
 ##### (a) B + C < 1/2.
 
-```{r solutionA}
+```{r SolutionA}
 
 ```
 
@@ -40,7 +38,7 @@ C
 
 ##### (b) BC < 1/2.
 
-```{r solutionB}
+```{r SolutionB}
 
 ```
 
@@ -49,7 +47,7 @@ C
 
 ##### (c) |B − C| < 1/2.
 
-```{r solutionC}
+```{r SolutionC}
 
 ```
 
@@ -58,7 +56,7 @@ C
 
 ##### (d) max{B,C} < 1/2.
 
-```{r solutionD}
+```{r SolutionD}
 
 ```
 
@@ -67,7 +65,7 @@ C
 
 ##### (e) min{B,C} < 1/2.
 
-```{r solutionE}
+```{r SolutionE}
 
 ```
 
