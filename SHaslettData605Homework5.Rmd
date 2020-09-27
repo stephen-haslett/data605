@@ -8,11 +8,24 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(pracma)
-library(Matrix)
+library(stats)
+library(ggplot2)
 ```
 
 #### Choose independently two numbers B and C at random from the interval [0, 1] with uniform density. Prove that B and C are proper probability distributions. Note that the point (B,C) is then chosen at random in the unit square.
+
+The first step to solving this problem is to define **B** and **C**. To do this, we can use R's
+[runif()](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Uniform) function. The **_runif()_** function takes 3 arguments:
+**_n_** (_the number of observations we wish to make_), **_min_** (_the lower limit of the distribution_), and finally **_max_**, (_the upper limit of the distribution_).
+These arguments combined make this function is a good fit for defining the numbers **B** and **C** as per the assignment instructions.
+
+```{r defineBandC}
+# Randomly define B and C from the interval [0, 1].
+B <- runif(100, 0, 1)
+C <- runif(100, 0, 1)
+B
+C
+```
 
 #### Find the probability that:
 
