@@ -19,10 +19,12 @@ The first step to solving this problem is to define **B** and **C**. To do this,
 **_n_** (_the number of observations we wish to make_), **_min_** (_the lower limit of the distribution_), and finally **_max_**, (_the upper limit of the distribution_).
 These arguments combined make this function is a good fit for defining the numbers **B** and **C** as per the assignment instructions.
 
+##### Prove that B and C are proper probability distributions.
+
 ```{r DefineNumbers}
-# Randomly define numbers B and C from the interval [0, 1], with 100 observations.
-B <- runif(100, 0, 1)
-C <- runif(100, 0, 1)
+# Randomly define numbers B and C from the interval [0, 1], with 10000 observations.
+B <- runif(10000, 0, 1)
+C <- runif(10000, 0, 1)
 ```
 
 #### Find the probability that:
@@ -31,48 +33,48 @@ C <- runif(100, 0, 1)
 
 ```{r SolutionA}
 
+probability_a <- round(sum((B + C) < .5) / 10000, 2)
+probability_a
 ```
 
-**Answer:** _ _
+**Answer:** _The probability that B + C < 1/2 is **0.13**_.
 
 
 ##### (b) BC < 1/2.
 
 ```{r SolutionB}
-
+probability_b <- round(sum((B * C) < .5) / 10000, 2)
+probability_b
 ```
 
-**Answer:** _ _
+**Answer:** _The probability that BC < 1/2 is **0.84**_.
 
 
 ##### (c) |B − C| < 1/2.
 
 ```{r SolutionC}
-
+probability_c <- round(sum(abs((B - C)) < .5) / 10000, 2)
+probability_c
 ```
 
-**Answer:** _ _
+**Answer:** _The probability that |B − C| < 1/2 is **0.75**_.
 
 
 ##### (d) max{B,C} < 1/2.
 
 ```{r SolutionD}
-
+probability_d <- round(sum(pmax(B, C) < .5) / 10000, 2)
+probability_d
 ```
 
-**Answer:** _ _
+**Answer:** _The probability that max{B,C} < 1/2 is **0.25**_.
 
 
 ##### (e) min{B,C} < 1/2.
 
 ```{r SolutionE}
-
+probability_e <- round(sum(pmin(B, C) < .5) / 10000, 2)
+probability_e
 ```
 
-**Answer:** _ _
-
-
-
-
-
-
+**Answer:** _The probability that min{B,C} < 1/2 is **0.75**_.
