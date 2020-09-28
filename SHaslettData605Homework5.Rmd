@@ -19,12 +19,37 @@ The first step to solving this problem is to define **B** and **C**. To do this,
 **_n_** (_the number of observations we wish to make_), **_min_** (_the lower limit of the distribution_), and finally **_max_**, (_the upper limit of the distribution_).
 These arguments combined make this function is a good fit for defining the numbers **B** and **C** as per the assignment instructions.
 
-##### Prove that B and C are proper probability distributions.
-
 ```{r DefineNumbers}
 # Randomly define numbers B and C from the interval [0, 1], with 10000 observations.
 B <- runif(10000, 0, 1)
 C <- runif(10000, 0, 1)
+```
+
+##### Prove that B and C are proper probability distributions.
+
+In order for B and C to be considered proper probability distributions,
+their cumulative distribution function must be equal to one. The below two plots prove that this is the case.
+
+```{r BProperDistribution}
+# Create a plot to Prove that B is a proper probability distribution.
+dataframe_b <- as.data.frame(B)
+ggplot2::ggplot(dataframe_b, ggplot2::aes(B)) +
+  geom_density(color = 'black', fill = 'PaleVioletRed') +
+  theme_minimal() +
+  labs(title = 'Proof That B is a Proper Probability Distribution',
+       x = "Probabilities of B are between 0 and 1",
+       y = "The sum of all probabilities of B is equal to 1")
+```
+
+```{r CProperDistribution}
+# Create a plot to Prove that C is a proper probability distribution.
+dataframe_c <- as.data.frame(C)
+ggplot2::ggplot(dataframe_c, ggplot2::aes(C)) +
+  geom_density(color = 'black', fill = 'SteelBlue') +
+  theme_minimal() +
+  labs(title = 'Proof That C is a Proper Probability Distribution',
+       x = "Probabilities of C are between 0 and 1",
+       y = "The sum of all probabilities of C is equal to 1")
 ```
 
 #### Find the probability that:
