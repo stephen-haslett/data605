@@ -1,0 +1,37 @@
+---
+title: "DATA 605 Homework 6"
+subtitle: "ASSIGNMENT 6"
+author: "Stephen Haslett"
+date: "10/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats)
+library(ggplot2)
+```
+
+**1. A box contains 54 red marbles, 9 white marbles, and 75 blue marbles. If a marble is randomly selected from the box,**
+**what is the probability that it is red or blue? Express your answer as a fraction or a decimal number rounded to four**
+**decimal places.**
+
+The first step to soving the problem us to find out how many marbles we have in total.
+```{r AnswerOne}
+# We have 54 red marbles, 9 white marbles, and 75 blue marbles.
+red_marbles <- 54
+white_marbles <- 9
+blue_marbles <- 75
+
+# Find the sum of all marbles.
+total_marbles <- red_marbles + white_marbles + blue_marbles
+total_marbles
+```
+
+Now that we know we have a total of **138** marbles, what is the probability that the marble we pick from the box is red?
+Similarly, what is the probability that the marble we pick from the box is blue?
+
+- There are **54 red marbles**, so the probability of picking a red marble from the box is: $\frac{54}{138}$
+
+- There are **75 blue marbles**, so the probability of picking a blue marble from the box is: $\frac{75}{138}$
+
