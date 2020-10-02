@@ -57,7 +57,7 @@ total_number_of_golf_balls <- 19 + 20 + 24 + 17
 total_number_of_golf_balls
 ```
 
-We have a total of **80 golf balls**, so what is the probability that we end up with a red golf ball?
+We have a total of **80 golf balls**, and **20 red golf balls**, so what is the probability that we end up with a red golf ball?
 
 ```{r AnswerTwoPartB}
 # We have 20 red balls, therefore the probability is as follows:
@@ -65,3 +65,15 @@ round(20 / total_number_of_golf_balls, 4)
 ```
 
 **Answer:** The probability that we end up with a red golf ball is **0.25**.
+
+**3. A pizza delivery company classifies its customers by gender and location of residence. The research department has**
+**gathered data from a random sample of 1399 customers. The data is summarized in the table below.**
+
+![](/Users/stephenhaslett/Data605/gender_table.png)
+
+**What is the probability that a customer is not male or does not live with parents? Write your answer as a fraction or a**
+**decimal number rounded to four decimal places.**
+
+```{r AnswerThree}
+
+```
