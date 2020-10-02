@@ -17,7 +17,8 @@ library(ggplot2)
 **decimal places.**
 
 The first step to soving the problem us to find out how many marbles we have in total.
-```{r AnswerOne}
+
+```{r AnswerOnePartA}
 # We have 54 red marbles, 9 white marbles, and 75 blue marbles.
 red_marbles <- 54
 white_marbles <- 9
@@ -35,3 +36,13 @@ Similarly, what is the probability that the marble we pick from the box is blue?
 
 - There are **75 blue marbles**, so the probability of picking a blue marble from the box is: $\frac{75}{138}$
 
+So what is the probability that the marble we pick is either red or blue?
+
+```{r AnswerOnePartB}
+# To find the probability of picking either a red or blue marble,
+# we need to sum their individual probabilities.
+probability_red_or_blue <- round((54 + 75) / total_marbles, 4)
+probability_red_or_blue
+```
+
+**Answer:** The probability of picking either a red or blue marble is **0.9348**.
