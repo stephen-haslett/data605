@@ -46,3 +46,22 @@ probability_red_or_blue
 ```
 
 **Answer:** The probability of picking either a red or blue marble is **0.9348**.
+
+**2. You are going to play mini golf. A ball machine that contains 19 green golf balls, 20 red golf balls, 24 blue golf balls, and**
+**17 yellow golf balls, randomly gives you your ball. What is the probability that you end up with a red golf ball? Express**
+**your answer as a simplified fraction or a decimal rounded to four decimal places.**
+
+```{r AnswerTwoPartA}
+# First sum the total number of golf balls.
+total_number_of_golf_balls <- 19 + 20 + 24 + 17
+total_number_of_golf_balls
+```
+
+We have a total of **80 golf balls**, so what is the probability that we end up with a red golf ball?
+
+```{r AnswerTwoPartB}
+# We have 20 red balls, therefore the probability is as follows:
+round(20 / total_number_of_golf_balls, 4)
+```
+
+**Answer:** The probability that we end up with a red golf ball is **0.25**.
