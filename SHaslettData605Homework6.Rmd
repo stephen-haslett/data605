@@ -75,5 +75,38 @@ round(20 / total_number_of_golf_balls, 4)
 **decimal number rounded to four decimal places.**
 
 ```{r AnswerThree}
+# Find out how many people there are in total.
+total_people <- sum(81, 116, 215, 130, 129, 228, 79, 252, 97, 72)
 
+# Remove males living with their parents from the total number of people.
+total_people_less_males_living_with_parents <- total_people - 215
+
+# To find the probability that a customer is not male or does not live with their parents, we divide
+# the total number of people minus males living with their parents by the total number of people.
+probability <- round(total_people_less_males_living_with_parents / total_people, 4)
+probability
 ```
+
+**Answer:** The probability that a customer is not male or does not live with their parents is **0.8463**.
+
+**4. Determine if the following events are independent: Going to the gym. Losing weight.**
+
+**Answer:** I would say that these are dependent events as going to the gym often results in losing weight.
+
+**5. A veggie wrap at City Subs is composed of 3 different vegetables and 3 different condiments wrapped up in a tortilla.**
+**If there are 8 vegetables, 7 condiments, and 3 types of tortilla available, how many different veggie wraps can be made?**
+
+```{r AnswerFive}
+# We can use R's choose() function to solve this problem. The choose() function calculates
+# the number of sets with x elements that can be chosen from a set with k.
+vegetables <- choose(8, 3)
+condiments <- choose(7, 3)
+tortilla <- choose(3, 1)
+
+# Multiply the results to find the total number of possible combinations.
+total_number_of_combinations <- vegetables * condiments * tortilla
+total_number_of_combinations
+```
+
+**Answer:** **5880** different veggie wraps can be made.
+
