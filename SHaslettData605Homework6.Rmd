@@ -227,34 +227,53 @@ expected_value
 **the screening polygraph will lie.**
 
 ```{r Thirteen}
-sensitivity <- 0.59
-specificiity <- 0.90
+# Probability of detecting a liar (sensitivity).
+probability_detecting_liar <- 0.59
+# Probability of not detecting a liar.
+probability_not_detecting_liar <- 1 - probability_detecting_liar
+# Probability of detecting a truth teller (specificity).
+probability_detecting_truth_teller <- 0.90
+# Probability of not detecting a truth teller.
+probability_not_detecting_truth_teller <- 1 - probability_detecting_truth_teller
+# Probability that the test subject is a liar.
 probability_liar <- 0.2
-probability_truth_teller <- 0.8
+# Probability that the test subject is a truth teller.
+probability_truth_teller <- 1 - probability_liar
 ```
 
 **a. What is the probability that an individual is actually a liar given that the polygraph detected him/her as such? (Show**
 **me the table or the formulaic solution or both.)**
 
 ```{r ThirteenStepOne}
-actual_liar <- round((probability_liar * sensitivity) / ((probability_liar * sensitivity) + (probability_truth_teller * 0.1)), 4)
+actual_liar <- round((probability_liar * probability_detecting_liar) /
+                     ((probability_liar * probability_detecting_liar) +
+                     (probability_truth_teller * probability_not_detecting_truth_teller)), 4)
 actual_liar
 ```
+
+**Answer:** The probability that an individual is actually a liar given that the polygraph detected him/her as such is **0.596**.
+
 
 **b. What is the probability that an individual is actually a truth-teller given that the polygraph detected him/her as**
 **such? (Show me the table or the formulaic solution or both.)**
 
 ```{r ThirteenStepTwo}
-truth_teller <- round((probability_truth_teller * specificiity) / ((probability_truth_teller * specificiity) + (probability_liar * 0.41)), 4)
+truth_teller <- round((probability_truth_teller * probability_detecting_truth_teller) /
+                      ((probability_truth_teller * probability_detecting_truth_teller) +
+                      (probability_liar * probability_not_detecting_liar)), 4)
 truth_teller
 ```
+
+**Answer:** The probability that an individual is actually a truth-teller given that the polygraph detected him/her as such is **0.8978**.
+
 
 **c. What is the probability that a randomly selected individual is either a liar or was identified as a liar by the**
 **polygraph? Be sure to write the probability statement.**
 
 
 ```{r ThirteenStepThree}
-answer <- probability_liar + 0.198 - probability_liar * sensitivity
+answer <- round(probability_liar + (probability_liar * (1 - probability_detecting_liar)), 2)
 answer
 ```
 
+**Answer:** The probability that a randomly selected individual is either a liar or was identified as a liar by the polygraph is **0.28**.
