@@ -136,12 +136,37 @@ appointment_possibilities
 **withdrawing 4 jellybeans such that the number of red ones is 0, the number of orange ones is 1, and the number of green**
 **ones is 3? Write your answer as a fraction or a decimal number rounded to four decimal places.**
 
-```{r AnswerSeven}
+```{r AnswerEight}
+# Define the jellybeans.
+red <- 9
+orange <- 4
+green <- 9
 
+# Calculate the total number of combinations related to withdrawing 4 jellybeans.
+total_jellybeans <- sum(red, orange, green)
+total_combinations <- choose(total_jellybeans, 4)
+
+# Calculate the possible combinations of withdrawing each jellybean.
+red_choice <- choose(red, 0)
+orange_choice <- choose(orange, 1)
+green_choice <- choose(green, 3)
+
+# Calculate the probability.
+probability <- round((red_choice * orange_choice * green_choice) / total_combinations, 4)
+probability
 ```
 
+**Answer:** The probability of reaching into the bag and randomly withdrawing 4 jellybeans such that the number of red ones is 0,
+the number of orange ones is 1, and the number of green ones is 3, is **0.0459**.
 
 
+**9. Evaluate the following expression: $\frac{11!}{7!}$**
 
+```{r AnswerNine}
+answer <- factorial(11) / factorial(7)
+answer
+```
+
+**Answer:** 7920
 
 
