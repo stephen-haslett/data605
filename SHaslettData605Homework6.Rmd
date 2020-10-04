@@ -47,6 +47,7 @@ probability_red_or_blue
 
 **Answer:** The probability of picking either a red or blue marble is **0.9348**.
 
+
 **2. You are going to play mini golf. A ball machine that contains 19 green golf balls, 20 red golf balls, 24 blue golf balls, and**
 **17 yellow golf balls, randomly gives you your ball. What is the probability that you end up with a red golf ball? Express**
 **your answer as a simplified fraction or a decimal rounded to four decimal places.**
@@ -65,6 +66,7 @@ round(20 / total_number_of_golf_balls, 4)
 ```
 
 **Answer:** The probability that we end up with a red golf ball is **0.25**.
+
 
 **3. A pizza delivery company classifies its customers by gender and location of residence. The research department has**
 **gathered data from a random sample of 1399 customers. The data is summarized in the table below.**
@@ -89,9 +91,11 @@ probability
 
 **Answer:** The probability that a customer is not male or does not live with their parents is **0.8463**.
 
+
 **4. Determine if the following events are independent: Going to the gym. Losing weight.**
 
 **Answer:** I would say that these are dependent events as going to the gym often results in losing weight.
+
 
 **5. A veggie wrap at City Subs is composed of 3 different vegetables and 3 different condiments wrapped up in a tortilla.**
 **If there are 8 vegetables, 7 condiments, and 3 types of tortilla available, how many different veggie wraps can be made?**
@@ -109,4 +113,35 @@ total_number_of_combinations
 ```
 
 **Answer:** **5880** different veggie wraps can be made.
+
+
+**6. Determine if the following events are independent. Jeff runs out of gas on the way to work. Liz watches the evening news.**
+
+**Answer:** These are independent events as Jeff running out of gas on the way to work has no relation to Liz watching the evening news.
+
+
+**7. The newly elected president needs to decide the remaining 8 spots available in the cabinet he/she is appointing.**
+**If there are 14 eligible candidates for these positions (where rank matters), how many different ways can the members**
+**of the cabinet be appointed?**
+
+```{r AnswerSeven}
+appointment_possibilities <- choose(14, 8) * factorial(8)
+appointment_possibilities
+```
+
+**Answer:** There are **121080960**  different ways the members of the cabinet can be appointed.
+
+
+**8. A bag contains 9 red, 4 orange, and 9 green jellybeans. What is the probability of reaching into the bag and randomly**
+**withdrawing 4 jellybeans such that the number of red ones is 0, the number of orange ones is 1, and the number of green**
+**ones is 3? Write your answer as a fraction or a decimal number rounded to four decimal places.**
+
+```{r AnswerSeven}
+
+```
+
+
+
+
+
 
