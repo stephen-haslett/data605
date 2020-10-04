@@ -220,3 +220,41 @@ expected_value
 
 **Answer:** If I played this game 994 times I would expect to lose **$1491.00**.
 
+
+**13. The sensitivity and specificity of the polygraph has been a subject of study and debate for years. A 2001 study of the**
+**use of polygraph for screening purposes suggested that the probability of detecting a liar was .59 (sensitivity) and that**
+**the probability of detecting a "truth teller" was .90 (specificity). We estimate that about 20% of individuals selected for**
+**the screening polygraph will lie.**
+
+```{r Thirteen}
+sensitivity <- 0.59
+specificiity <- 0.90
+probability_liar <- 0.2
+probability_truth_teller <- 0.8
+```
+
+**a. What is the probability that an individual is actually a liar given that the polygraph detected him/her as such? (Show**
+**me the table or the formulaic solution or both.)**
+
+```{r ThirteenStepOne}
+actual_liar <- round((probability_liar * sensitivity) / ((probability_liar * sensitivity) + (probability_truth_teller * 0.1)), 4)
+actual_liar
+```
+
+**b. What is the probability that an individual is actually a truth-teller given that the polygraph detected him/her as**
+**such? (Show me the table or the formulaic solution or both.)**
+
+```{r ThirteenStepTwo}
+truth_teller <- round((probability_truth_teller * specificiity) / ((probability_truth_teller * specificiity) + (probability_liar * 0.41)), 4)
+truth_teller
+```
+
+**c. What is the probability that a randomly selected individual is either a liar or was identified as a liar by the**
+**polygraph? Be sure to write the probability statement.**
+
+
+```{r ThirteenStepThree}
+answer <- probability_liar + 0.198 - probability_liar * sensitivity
+answer
+```
+
