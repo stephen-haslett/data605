@@ -270,10 +270,11 @@ truth_teller
 **c. What is the probability that a randomly selected individual is either a liar or was identified as a liar by the**
 **polygraph? Be sure to write the probability statement.**
 
+**$P(LiarOrIdentifiedAsLiar) = P(liar) + (P(liar) * (1 - P(sensitivity))) = 0.2 + (0.2 * (1 - 0.59))$**
 
 ```{r ThirteenStepThree}
-answer <- round(probability_liar + (probability_liar * (1 - probability_detecting_liar)), 2)
-answer
+liar_or_identified_as_liar <- round(probability_liar + (probability_liar * (1 - probability_detecting_liar)), 2)
+liar_or_identified_as_liar
 ```
 
 **Answer:** The probability that a randomly selected individual is either a liar or was identified as a liar by the polygraph is **0.28**.
