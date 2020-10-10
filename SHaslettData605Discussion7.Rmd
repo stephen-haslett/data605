@@ -1,0 +1,41 @@
+---
+title: "DATA 605 Discussion 7"
+subtitle: "Exercise 2, Chapter 6.1, Page 247"
+author: "Stephen Haslett"
+date: "9/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+```
+
+### Exercise 2 problem
+A card is drawn at random from a deck of playing cards. If it is red, the player wins 1 dollar; if it is black, the player loses 2 dollars. Find the expected value of the game.
+
+
+### Exercise 2 solution
+A deck of cards consists of a total of 52 cards. Out of this total, 26 cards are red, and 26 cards are black. In other words, half the deck is red, and half the deck is black. Therefore, we can find the expected value of the game using the following formula:
+
+**_X = win_amount * (total_red/total_cards) - loss_amount * (total_black/total_cards)_**
+
+Using R, we can apply the above formula to calculate the expected value of the game.
+
+```{r e2solution}
+# Dollar amounts to be lost or won.
+win_amount <- 1
+loss_amount <- 2
+
+# Cards in the deck.
+total_cards <- 52
+total_red <- 26
+total_black <- 26
+
+# Apply the formula "X = win_amount * (total_red/total_cards) - loss_amount * (total_black/total_cards)"
+# to calculate the expected value of the game.
+expected_value <- win_amount * (total_red/total_cards) - loss_amount * (total_black/total_cards)
+expected_value
+```
+
+**Answer:** The expected value of the game is **-0.5**, therefore the chances of lossing this game are high.
