@@ -16,10 +16,27 @@ library(Matrix)
 **which is uniformly distributed on the integers from 1 to k. Let Y denote the**
 **minimum of the Xi’s. Find the distribution of Y.**
 
+To answer this question, we can plot a histogram and observe Y's distribution.
 
 ```{r Answer1}
+# Define the variables we need to simulate the problem.
+n <- 50000
+k <- 50
+samples <- 10
+Y <- c()
 
+# Simulate the problem.
+for (count in 1:n) {
+  Xn <- sample(1:k, samples, TRUE)
+  Y <- c(Y, min(Xn))
+}
+
+# Plot the results as a histogram so we can observe the distribution of Y.
+distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
 ```
+
+
+**Answer:** The distribution of **Y** is positively skewed.
 
 **2. Your organization owns a copier (future lawyers, etc.) or MRI (future doctors). This machine has **
 **a manufacturer’s expected lifetime of 10 years. This means that we expect one failure every ten years. **
