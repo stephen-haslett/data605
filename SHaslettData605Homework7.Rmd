@@ -25,27 +25,66 @@ library(Matrix)
 **a manufacturer’s expected lifetime of 10 years. This means that we expect one failure every ten years. **
 **(Include the probability statements and R Code for each part.).**
 
+```{r Answer2-setup}
+  failure_probability <- 0.1
+```
 
 **2. a. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a geometric.**
 **(Hint: the probability is equivalent to not failing during the first 8 years..)**
 
-```{r Answer2-a}
+```{r Answer2-aa}
+  # Calculate the probability that the machine will fail after 8 years using a geometric model.
+  machine_failure_geo_probability <- pgeom(8, failure_probability, lower.tail = FALSE)
+  machine_failure_geo_probability
+```
+
+```{r Answer2-ab}
+  # Calculate the standard deviation for the geometric model.
+  geometric_standard_deviation <- sqrt((1 - failure_probability) / (failure_probability^2))
+  geometric_standard_deviation
 ```
 
 **2. b. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as an exponential.**
 
-```{r Answer2-b}
+```{r Answer2-ba}
+  # Calculate the probability that the machine will fail after 8 years using an exponential model.
+  machine_failure_exp_probability <- pexp(8, failure_probability, lower.tail = FALSE)
+  machine_failure_exp_probability
 ```
 
+```{r Answer2-bb}
+  # Calculate the standard deviation for the exponential model.
+  exponential_standard_deviation <- sqrt(1 / failure_probability^2)
+  exponential_standard_deviation
+```
 
 **2. c. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a binomial.**
 **(Hint: 0 success in 8 years)**
 
-```{r Answer2-c}
+```{r Answer2-ca}
+  # Calculate the probability that the machine will fail after 8 years using an binomial model.
+  machine_failure_binomial_probability <- pbinom(0, 8, failure_probability)
+  machine_failure_binomial_probability
 ```
+
+
+```{r Answer2-cb}
+  # Calculate the standard deviation for the binomial model.
+  binomial_standard_deviation <- sqrt(8 * failure_probability * (1 - failure_probability))
+  binomial_standard_deviation
+```
+
 
 **2. d. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a Poisson.**
 
-```{r Answer2-c}
+```{r Answer2-da}
+  # Calculate the probability that the machine will fail after 8 years using an Poisson model.
+  machine_failure_poisson_probability <- ppois(0, 0.8)
+  machine_failure_poisson_probability
 ```
 
+```{r Answer2-db}
+  # Calculate the standard deviation for the Poisson model.
+  poisson_standard_deviation <- sqrt(8 * failure_probability)
+  poisson_standard_deviation
+```
