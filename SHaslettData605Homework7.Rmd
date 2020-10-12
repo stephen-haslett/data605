@@ -63,7 +63,7 @@ distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
   geometric_standard_deviation
 ```
 
-**_Geometric Probability Statement:_** $P(X = n) = (1 - p)^{n-1} * p$
+**_Geometric Probability Formula:_** $P(X=n) = q^{n-1} * p$
 
 **_Geometric Standard Deviation:_** 9.486833
 
@@ -86,7 +86,7 @@ distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
   exponential_standard_deviation
 ```
 
-**_Exponential Probability Statement:_** $P(X > 8) = e^\frac{−k}{u}$
+**_Exponential Probability Formula:_** $P(X \le k) = 1 - e^{\frac{-k}{\mu}}$, where $\mu = \frac{1}{\lambda}$
 
 **_Exponential Standard Deviation:_** 10
 
@@ -111,7 +111,7 @@ distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
   binomial_standard_deviation
 ```
 
-**_Binomial Probability Statement:_** $P(X > 8) = e^\frac{−k}{u}$
+**_Binomial Probability Formula:_** $P(X=k) = {n \choose k} p^{k}q^{n-k}$
 
 **_Binomial Standard Deviation:_** 0.8485281
 
@@ -133,7 +133,7 @@ distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
   poisson_standard_deviation
 ```
 
-**_Poisson Probability Statement:_** $P(X > 8) = e^\frac{−k}{u}$
+**_Poisson Probability Formula:_** $P(X=k) = \frac{\lambda^{k}}{k!}e^{-\lambda}$
 
 **_Poisson Standard Deviation:_** 0.8944272
 
