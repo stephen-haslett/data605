@@ -74,19 +74,19 @@ paste("The upper bound of 'P(|X − 10| ≥ 2' is", answer_a)
 ```{r Exercise-1-b-solution}
 # Find the upper bound of P(|X − 10| ≥ 5).
 answer_b <- chebyshev_inequality_calculator(5)
-paste("The upper bound of 'P(|X − 10| ≥ 5)' is", answer_a)
+paste("The upper bound of 'P(|X − 10| ≥ 5)' is", answer_b)
 ```
 
 
 ```{r Exercise-1-c-solution}
 # Find the upper bound of P(|X − 10| ≥ 9).
 answer_c <- chebyshev_inequality_calculator(9)
-paste("The upper bound of 'P(|X − 10| ≥ 9)' is", answer_a)
+paste("The upper bound of 'P(|X − 10| ≥ 9)' is", answer_c)
 ```
 
 
 ```{r Exercise-1-d-solution}
 # Find the upper bound of P(|X − 10| ≥ 20).
 answer_d <- chebyshev_inequality_calculator(20)
-paste("The upper bound of 'P(|X − 10| ≥ 20)' is", answer_a)
+paste("The upper bound of 'P(|X − 10| ≥ 20)' is", answer_d)
 ```
