@@ -1,0 +1,45 @@
+---
+title: "DATA 605 Homework 8"
+subtitle: "ASSIGNMENT 8"
+author: "Stephen Haslett"
+date: "10/15/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(Matrix)
+```
+
+
+#### Exercise 11 - Page 303
+A company buys 100 lightbulbs, each of which has an exponential lifetime of 1000 hours. What is the expected time for the first of these bulbs to burn out?
+
+
+```{r Exercise-11-solution}
+
+```
+
+
+#### Exercise 14 - Page 303
+Assume that  $x_{1}$ and $x_{2}$ are independent random variables, each having an exponential density with parameter $\lambda$. Show that $Z = x_{1} − x_{2}$ has density:
+$$f_{Z} = (1/2)\lambda_{e}^-\lambda|z|$$.
+
+
+```{r Exercise-14-solution}
+
+```
+
+#### Exercise 1 - Pages 320 - 321
+Let $X$ be a continuous random variable with mean $µ = 10$ and variance $σ^2 = 100/3$. Using Chebyshev’s Inequality, find an upper bound for the following probabilities.
+
+(a) $P(|X − 10| ≥ 2)$.
+(b) $P(|X − 10| ≥ 5)$.
+(c) $P(|X − 10| ≥ 9)$.
+(d) $P(|X − 10| ≥ 20)$.
+
+  
+```{r Exercise-1-solution}
+
+```
