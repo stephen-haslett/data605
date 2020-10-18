@@ -36,13 +36,14 @@ first_bulp_lifespan
 
 
 #### Exercise 14 - Page 303
-Assume that  $x_{1}$ and $x_{2}$ are independent random variables, each having an exponential density with parameter $\lambda$. Show that $Z = x_{1} − x_{2}$ has density:
+Assume that $x_{1}$ and $x_{2}$ are independent random variables, each having an exponential density with parameter $\lambda$. Show that $Z = x_{1} − x_{2}$ has density:
 $$f_{Z} = (1/2)\lambda_{e}^-\lambda|z|$$.
 
 
 ```{r Exercise-14-solution}
 
 ```
+
 
 #### Exercise 1 - Pages 320 - 321
 Let $X$ be a continuous random variable with mean $µ = 10$ and variance $σ^2 = 100/3$. Using Chebyshev’s Inequality, find an upper bound for the following probabilities.
@@ -53,6 +54,39 @@ Let $X$ be a continuous random variable with mean $µ = 10$ and variance $σ^2 =
 (d) $P(|X − 10| ≥ 20)$.
 
   
-```{r Exercise-1-solution}
+```{r Exercise-1-chebyshev}
+# Create a function to calculate Chebyshev’s Inequality.
+chebyshev_inequality_calculator <- function(epsilon) {
+  variance <- 100 / 3
+  probability_x <- variance / epsilon^2
 
+  return(round(probability_x, 4))
+}
+```
+
+```{r Exercise-1-a-solution}
+# Find the upper bound of P(|X − 10| ≥ 2.
+answer_a <- chebyshev_inequality_calculator(2)
+paste("The upper bound of 'P(|X − 10| ≥ 2' is", answer_a)
+```
+
+
+```{r Exercise-1-b-solution}
+# Find the upper bound of P(|X − 10| ≥ 5).
+answer_b <- chebyshev_inequality_calculator(5)
+paste("The upper bound of 'P(|X − 10| ≥ 5)' is", answer_a)
+```
+
+
+```{r Exercise-1-c-solution}
+# Find the upper bound of P(|X − 10| ≥ 9).
+answer_c <- chebyshev_inequality_calculator(9)
+paste("The upper bound of 'P(|X − 10| ≥ 9)' is", answer_a)
+```
+
+
+```{r Exercise-1-d-solution}
+# Find the upper bound of P(|X − 10| ≥ 20).
+answer_d <- chebyshev_inequality_calculator(20)
+paste("The upper bound of 'P(|X − 10| ≥ 20)' is", answer_a)
 ```
