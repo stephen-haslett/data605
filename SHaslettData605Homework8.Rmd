@@ -18,8 +18,21 @@ A company buys 100 lightbulbs, each of which has an exponential lifetime of 1000
 
 
 ```{r Exercise-11-solution}
+# Sum of the bulbs.
+number_of_bulbs <- 100
 
+# The mean lifetime of the bulbs is 1000 hours.
+bulbs_mean_lifetime <- 1000
+
+# We have 100 bulbs, so to find the lifetime of the first lightbulb (minimum lifetime),
+# we divid the mean lifetime by the number of bulbs.
+first_bulp_lifespan <- 1000/100
+
+# The first lightbulb will burn out after 10 hours.
+first_bulp_lifespan
 ```
+
+**Answer:** The expected time for the first of these bulbs to burn out is **10 hours**.
 
 
 #### Exercise 14 - Page 303
