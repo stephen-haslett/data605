@@ -1,6 +1,6 @@
 ---
 title: "DATA 605 Discussion 8"
-subtitle: "Exercise 16, Chapter 8, Page 323"
+subtitle: "Exercise 3, Chapter 7.1, Page 289"
 author: "Stephen Haslett"
 date: "9/16/2020"
 output: html_document
@@ -10,27 +10,40 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Exercise 16
-Let Z = X/Y where X and Y have normal densities with mean 0 and standard deviation 1. Then it can be shown that Z has a Cauchy density.
+### Exercise 3
+Let $x_{1}$ and $x_{2}$ be independent random variables with common distribution:
 
-#### Part A
-(a) Write a program to illustrate this result by plotting a bar graph of 1000 samples obtained by forming the ratio of two standard normal outcomes. Compare your bar graph with the graph of the Cauchy density.
+![](/Users/stephenhaslett/Data605/problem.png)
 
+Find the distribution of the sum $x_{1} + x_{2}$.
 
-```{r 16ANormalDistribution}
-standard_density_graph <- hist(rnorm(1000) / rnorm(1000), breaks = 1000, xlim = c(-20, 20),
-                                  xlab = 'Samples', ylab = 'Density', col = 'green',
-                                  main = 'Standard Densities')
+**Answer**
+
+```{r exercise3Solution}
+# Let X be equal to X1 + X2
+paste('Let X be equal to X1 + X2')
+
+# P(X = 0)
+zero <- 1/8 * 1/8
+paste('P(X = 0) =', zero)
+
+# P(X = 1)
+one <- (1/8 * 3/8) + (3/8 * 1/8)
+paste('P(X = 1) =', one)
+
+# P(X = 2)
+two <- (1/8 * 1/2) + (3/8 * 3/8) + (1/2 * 1/8)
+paste('P(X = 2) =', two)
+
+# P(X = 3)
+three <- (3/8 * 1/2) + (1/2 * 3/8)
+paste('P(X = 3) =', three)
+
+# P(X = 4)
+four <- 1/2 * 1/2
+paste('P(X = 4) =', four)
+
+# Make sure the sum of all probabilities is equal to 1.
+sum <- zero + one + two + three + four
+paste('Sum of all probabilities =', sum)
 ```
-
-```{r 16ACauchyDistribution}
-cauchy_density_graph <- hist(rcauchy(1000), breaks = 1000, xlim = c(-20, 20),
-                                  xlab = 'Samples', ylab = 'Density', col = 'red',
-                                  main = 'Cauchy Densities')
-```
-
-**Answer:**
-
-
-#### Part B
-(b) We have seen that the Law of Large Numbers does not apply to the Cauchy density (see Example 8.8). Simulate a large number of experiments with Cauchy density and compute the average of your results. Do these averages seem to be approaching a limit? If so can you explain why this might be?  
