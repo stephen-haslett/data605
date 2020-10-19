@@ -37,12 +37,21 @@ first_bulp_lifespan
 
 #### Exercise 14 - Page 303
 Assume that $x_{1}$ and $x_{2}$ are independent random variables, each having an exponential density with parameter $\lambda$. Show that $Z = x_{1} − x_{2}$ has density:
-$$f_{Z} = (1/2)\lambda_{e}^-\lambda|z|$$.
+$$f_{Z} = (1/2)\lambda_{e}^-\lambda|z|$$
 
+**Answer:**
 
-```{r Exercise-14-solution}
+$fX_1(x) = fX_2(x) = \begin{cases} \lambda e^{-\lambda x}, & x \ge 0 \\ 0, & x <0 \end{cases}$
 
-```
+$fZ(z) = \int_{-\infty}^{\infty} fX_1(x)fX_2(x - z)dx$
+
+$= \int_{0}^{\infty} \lambda e^{-\lambda x}\lambda e^{-\lambda (x-z)}dx$
+
+$= \int_{0}^{\infty} \lambda^2e^{-2\lambda x + \lambda z}dx$
+
+$= \lambda e^{\lambda z} \int_{0}^{\infty} e^{-2 \lambda x} dx$
+
+$= \frac{1}{2}  \lambda e^{-\lambda |z|}$
 
 
 #### Exercise 1 - Pages 320 - 321
@@ -67,26 +76,37 @@ chebyshev_inequality_calculator <- function(epsilon) {
 ```{r Exercise-1-a-solution}
 # Find the upper bound of P(|X − 10| ≥ 2.
 answer_a <- chebyshev_inequality_calculator(2)
-paste("The upper bound of 'P(|X − 10| ≥ 2' is", answer_a)
+paste("P(|X − 10| ≥ 2 =", answer_a)
 ```
 
 
 ```{r Exercise-1-b-solution}
 # Find the upper bound of P(|X − 10| ≥ 5).
 answer_b <- chebyshev_inequality_calculator(5)
-paste("The upper bound of 'P(|X − 10| ≥ 5)' is", answer_b)
+paste("P(|X − 10| ≥ 5) =", answer_b)
 ```
 
 
 ```{r Exercise-1-c-solution}
 # Find the upper bound of P(|X − 10| ≥ 9).
 answer_c <- chebyshev_inequality_calculator(9)
-paste("The upper bound of 'P(|X − 10| ≥ 9)' is", answer_c)
+paste("P(|X − 10| ≥ 9) =", answer_c)
 ```
 
 
 ```{r Exercise-1-d-solution}
 # Find the upper bound of P(|X − 10| ≥ 20).
 answer_d <- chebyshev_inequality_calculator(20)
-paste("The upper bound of 'P(|X − 10| ≥ 20)' is", answer_d)
+paste("P(|X − 10| ≥ 20) =", answer_d)
 ```
+
+**Answers:**
+
+(a) P(|X − 10| ≥ 2 = **8.3333**
+
+(b) P(|X − 10| ≥ 5) = **1.3333**
+
+(c) P(|X − 10| ≥ 9) = **0.4115**
+
+(d) P(|X − 10| ≥ 20) = **0.0833**
+
