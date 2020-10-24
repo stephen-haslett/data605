@@ -1,0 +1,140 @@
+---
+title: "DATA 605 Homework 7"
+subtitle: "ASSIGNMENT 7"
+author: "Stephen Haslett"
+date: "10/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(Matrix)
+```
+
+**1. Let X1, X2, . . . , Xn be n mutually independent random variables, each of**
+**which is uniformly distributed on the integers from 1 to k. Let Y denote the**
+**minimum of the Xi’s. Find the distribution of Y.**
+
+To answer this question, we can plot a histogram and observe Y's distribution.
+
+```{r Answer1}
+# Define the variables we need to simulate the problem.
+n <- 50000
+k <- 50
+samples <- 10
+Y <- c()
+
+# Simulate the problem.
+for (count in 1:n) {
+  Xn <- sample(1:k, samples, TRUE)
+  Y <- c(Y, min(Xn))
+}
+
+# Plot the results as a histogram so we can observe the distribution of Y.
+distribution_of_y <- hist(Y, col = '#A52A2A', main = 'Distribution of Y')
+```
+
+
+**Answer:** The distribution of **Y** is positively skewed.
+
+**2. Your organization owns a copier (future lawyers, etc.) or MRI (future doctors). This machine has **
+**a manufacturer’s expected lifetime of 10 years. This means that we expect one failure every ten years. **
+**(Include the probability statements and R Code for each part.).**
+
+```{r Answer2-setup}
+  failure_probability <- 0.1
+```
+
+**2. a. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a geometric.**
+**(Hint: the probability is equivalent to not failing during the first 8 years..)**
+
+**Geometric Model**
+
+```{r Answer2-aa}
+  # Calculate the probability that the machine will fail after 8 years using a geometric model.
+  machine_failure_geo_probability <- pgeom(8, failure_probability, lower.tail = FALSE)
+  machine_failure_geo_probability
+```
+
+```{r Answer2-ab}
+  # Calculate the standard deviation for the geometric model.
+  geometric_standard_deviation <- sqrt((1 - failure_probability) / (failure_probability^2))
+  geometric_standard_deviation
+```
+
+**_Geometric Probability Formula:_** $P(X=n) = q^{n-1} * p$
+
+**_Geometric Standard Deviation:_** 9.486833
+
+**Answer:** Using a geometric model, the probability that the machine will fail after 8 years is **0.3874205**.
+
+
+**2. b. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as an exponential.**
+
+**Exponential Model**
+
+```{r Answer2-ba}
+  # Calculate the probability that the machine will fail after 8 years using an exponential model.
+  machine_failure_exp_probability <- pexp(8, failure_probability, lower.tail = FALSE)
+  machine_failure_exp_probability
+```
+
+```{r Answer2-bb}
+  # Calculate the standard deviation for the exponential model.
+  exponential_standard_deviation <- sqrt(1 / failure_probability^2)
+  exponential_standard_deviation
+```
+
+**_Exponential Probability Formula:_** $P(X \le k) = 1 - e^{\frac{-k}{\mu}}$, where $\mu = \frac{1}{\lambda}$
+
+**_Exponential Standard Deviation:_** 10
+
+**Answer:** Using an exponential model, the probability that the machine will fail after 8 years is **0.449329**.
+
+
+**2. c. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a binomial.**
+**(Hint: 0 success in 8 years)**
+
+**Binomial Model**
+
+```{r Answer2-ca}
+  # Calculate the probability that the machine will fail after 8 years using an binomial model.
+  machine_failure_binomial_probability <- pbinom(0, 8, failure_probability)
+  machine_failure_binomial_probability
+```
+
+
+```{r Answer2-cb}
+  # Calculate the standard deviation for the binomial model.
+  binomial_standard_deviation <- sqrt(8 * failure_probability * (1 - failure_probability))
+  binomial_standard_deviation
+```
+
+**_Binomial Probability Formula:_** $P(X=k) = {n \choose k} p^{k}q^{n-k}$
+
+**_Binomial Standard Deviation:_** 0.8485281
+
+**Answer:** Using a binomial model, the probability that the machine will fail after 8 years is **0.4304672**.
+
+**2. d. What is the probability that the machine will fail after 8 years?. Provide also the expected value and standard deviation. Model as a Poisson.**
+
+**Poisson Model**
+
+```{r Answer2-da}
+  # Calculate the probability that the machine will fail after 8 years using an Poisson model.
+  machine_failure_poisson_probability <- ppois(0, 0.8)
+  machine_failure_poisson_probability
+```
+
+```{r Answer2-db}
+  # Calculate the standard deviation for the Poisson model.
+  poisson_standard_deviation <- sqrt(8 * failure_probability)
+  poisson_standard_deviation
+```
+
+**_Poisson Probability Formula:_** $P(X=k) = \frac{\lambda^{k}}{k!}e^{-\lambda}$
+
+**_Poisson Standard Deviation:_** 0.8944272
+
+**Answer:** Using a Poisson model, the probability that the machine will fail after 8 years is **0.449329**.
