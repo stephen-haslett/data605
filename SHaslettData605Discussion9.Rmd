@@ -1,0 +1,19 @@
+---
+title: "DATA 605 Discussion 9"
+subtitle: "Exercise 11, Chapter 9.2, Page 355"
+author: "Stephen Haslett"
+date: "10/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercise 11
+A tourist in Las Vegas was attracted by a certain gambling game in which the customer stakes 1 dollar on each play; a win then pays the customer 2 dollars plus the return of her stake, although a loss costs her only her stake. Las Vegas insiders, and alert students of probability theory, know that the probability of winning at this game is 1/4. When driven from the tables by hunger, the tourist had played this game 240 times. Assuming that no near miracles happened, about how much poorer was the tourist upon leaving the casino?
+
+**Answer**
+
+```{r exercise11Solution}
+```
