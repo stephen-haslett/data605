@@ -8,12 +8,30 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(scales)
 ```
 
 ### Exercise 11
-A tourist in Las Vegas was attracted by a certain gambling game in which the customer stakes 1 dollar on each play; a win then pays the customer 2 dollars plus the return of her stake, although a loss costs her only her stake. Las Vegas insiders, and alert students of probability theory, know that the probability of winning at this game is 1/4. When driven from the tables by hunger, the tourist had played this game 240 times. Assuming that no near miracles happened, about how much poorer was the tourist upon leaving the casino?
+A tourist in Las Vegas was attracted by a certain gambling game in which the customer stakes 1 dollar on each play; a win then pays the customer 2 dollars plus the return of her stake, although a loss costs her only her stake. Las Vegas insiders, and alert students of probability theory, know that the probability of winning at this game is 1/4. When driven from the tables by hunger, the tourist had played this game 240 times. Assuming that no near miracles happened, about how much poorer was the tourist upon leaving the casino? What is the probability that she lost no money?
 
-**Answer**
+A. Calculate how much poorer the tourist was upon leaving the casino.
 
 ```{r exercise11Solution}
+# Define the variables we need to solve the problem.
+stake_amount <- 1
+win_amount <- 2
+probabilty_of_winning <- 0.25
+probabilty_of_losing <- 0.75
+games_played <- 240
+
+# Calculate the expected loss of playing a single game.
+expected_loss <- (probabilty_of_winning * win_amount) + (probabilty_of_losing * -stake_amount)
+paste('The expected loss for a single game is', dollar(abs(expected_loss)))
+
+# We now know that the expected loss for a single game is $0.25, so we can multiply this by the
+# amount of games played to find out how much they lost in total after playing 240 games.
+total_losses <- expected_loss * games_played
+paste('The total expected loss after playing 240 games is', dollar(abs(total_losses)))
 ```
+
+**Answer:** The tourist would be $60 poorer upon leaving the casino.
