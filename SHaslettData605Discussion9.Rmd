@@ -16,7 +16,7 @@ A tourist in Las Vegas was attracted by a certain gambling game in which the cus
 
 A. Calculate how much poorer the tourist was upon leaving the casino.
 
-```{r exercise11Solution}
+```{r exercise11SolutionA}
 # Define the variables we need to solve the problem.
 stake_amount <- 1
 win_amount <- 2
@@ -34,4 +34,20 @@ total_losses <- expected_loss * games_played
 paste('The total expected loss after playing 240 games is', dollar(abs(total_losses)))
 ```
 
-**Answer:** The tourist would be $60 poorer upon leaving the casino.
+**Answer to Part A:** The tourist would be **$60** poorer upon leaving the casino.
+
+B. What is the probability that she lost no money?
+
+```{r exercise11SolutionB}
+# Calculate the standard deviation.
+standard_deviation <- round(sqrt(games_played * probabilty_of_winning * probabilty_of_losing), 1)
+
+# Define the mean.
+mean <- total_losses
+
+# Calculate the probability that she leaves with zero winnings.
+probability_of_zero_winnings <- pnorm(0, mean, standard_deviation)
+paste('The probability of the tourist leaving with zero winnings is', probability_of_zero_winnings)
+```
+
+**Answer to Part B:** The probability of the tourist leaving with no winnings is 1, therefore the probability that she lost no money is **zero**.
