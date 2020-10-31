@@ -11,12 +11,49 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Exercise 7
-Discussion 10 Find the matrices $P^2, P^3, P^4$, and $P^n$ for the Markov chain determined by the transition matrix $P = \begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$. Do the same for the transition matrix $P =  \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$. Interpret what happens in each of these processes.
+Find the matrices $P^2, P^3, P^4$, and $P^n$ for the Markov chain determined by the transition matrix $P = \begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$.
 
+Do the same for the transition matrix $P =  \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$. Interpret what happens in each of these processes.
+
+### Exercise 7 Solution
 
 ```{r exercise7Solution}
+# Define the first transition matrix in the problem.
+transition_matrix_one <- matrix(c(1, 0, 0, 1), 2)
+
+# Define the second transition matrix in the problem.
+transition_matrix_two <- matrix(c(0, 1, 1, 0), 2)
+```
+
+
+####Find matrices $P^2$ through $P^n$ for the first transition matrix.
+
+
+Find the matrix $P^2$.
+```{r firstMatrix}
+P2 <- transition_matrix_one^2
+P2
+```
+
+
+Find the matrix $P^3$.
+```{r secondMatrix}
 
 ```
+
+
+Find the matrix $P^4$.
+```{r thirdMatrix}
+
+```
+
+
+Find the matrix $P^n$.
+```{r fourthMatrix}
+
+```
+
+
 
 **Answer:** 
 
