@@ -1,0 +1,23 @@
+---
+title: "DATA 605 Discussion 10"
+subtitle: "Exercise 7, Chapter 11, Page 414"
+author: "Stephen Haslett"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercise 7
+Discussion 10 Find the matrices $P^2, P^3, P^4$, and $P^n$ for the Markov chain determined by the transition matrix $P = \begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$. Do the same for the transition matrix $P =  \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$. Interpret what happens in each of these processes.
+
+
+```{r exercise7Solution}
+
+```
+
+**Answer:** 
+
+
