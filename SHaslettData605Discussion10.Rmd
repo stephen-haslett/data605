@@ -8,6 +8,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(expm)
 ```
 
 ### Exercise 7
@@ -26,35 +27,65 @@ transition_matrix_two <- matrix(c(0, 1, 1, 0), 2)
 ```
 
 
-####Find matrices $P^2$ through $P^n$ for the first transition matrix.
+#### Find matrices $P^2$ through $P^n$ for the first transition matrix.
 
+
+**Find the matrix $P^2$**.
+```{r firstMatrix}
+P2 <- transition_matrix_one%^%2
+P2
+```
+
+
+**Find the matrix $P^3$**.
+```{r secondMatrix}
+P3 <- transition_matrix_one%^%3
+P3
+```
+
+
+**Find the matrix $P^4$**.
+```{r thirdMatrix}
+P4 <- transition_matrix_one%^%4
+P4
+```
+
+
+**Find the matrix $P^n$**.
+```{r fourthMatrix}
+Pn <- transition_matrix_one%^%5
+Pn
+```
+
+
+#### Find matrices $P^2$ through $P^n$ for the second transition matrix.
 
 Find the matrix $P^2$.
-```{r firstMatrix}
-P2 <- transition_matrix_one^2
+```{r setTwoFirstMatrix}
+P2 <- transition_matrix_two%^%2
 P2
 ```
 
 
 Find the matrix $P^3$.
-```{r secondMatrix}
-
+```{r setTwoSecondMatrix}
+P3 <- transition_matrix_two%^%3
+P3
 ```
 
 
-Find the matrix $P^4$.
-```{r thirdMatrix}
-
+**Find the matrix $P^4$.**
+```{r setTwoThirdMatrix}
+P4 <- transition_matrix_two%^%4
+P4
 ```
 
 
 Find the matrix $P^n$.
-```{r fourthMatrix}
-
+```{r setTwoFourthMatrix}
+Pn <- transition_matrix_two%^%5
+Pn
 ```
 
 
-
-**Answer:** 
-
-
+#### Observations
