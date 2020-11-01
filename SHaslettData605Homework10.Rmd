@@ -20,31 +20,35 @@ he wins A dollars with probability .4 and loses A dollars with probability .6. F
 
 (c) Which strategy gives Smith the better chance of getting out of jail?
 
-
 ### Solutions
 
 Define the universal variables used in the game.
 ```{r UniversalVariables}
-# Define the probability of winning.
-p <- 0.4
-
-# Define the probability of losing.
+# Define the probability of losing (q).
 q <- 0.6
 
-# Calculate the ratio of winning probability to losing probability.
+# Define the probability of winning (p).
+p <- 0.4
+
+# Calculate the probability ratio of winning to losing (q/p).
 ratio <- q/p
 
-# Define the minimum bet amount, and target win amount.
-bet <- 1
-win_target <- 8
+# Define the minimum bet amount (x), and the amount needed to win the bet (y).
+x <- 1
+y <- 8
 ```
 
 
 **(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**.
 
+We can calculate the probability of the prisoner winning \$8 before losing all of his money utilizing the following formula:
+$$P_{x} = \frac{(1 - \frac{q}{p})^{x}}{(1 - \frac{q}{p})^{y}}$$.
+
+Using the above formula, we can use R to calculate the probability of the prisoner winning as follows:
+
 ```{r SolutionA}
-# Calculate the probability of the prisoner winning the game.
-win_probability <- (1 - ratio^bet) / (1 - ratio^win_target)
+# Calculate the probability of the prisoner winning the game (timid strategy).
+win_probability <- (1 - ratio^x) / (1 - ratio^y)
 probability_prisoner_wins <- round(win_probability, 2)
 probability_prisoner_wins
 ```
@@ -52,3 +56,9 @@ probability_prisoner_wins
 **Answer:** The probability that the prisoner will win the game is **0.02**.
 
 
+**(b) He bets, each time, as much as possible but not more than necessary to bring his fortune up to 8 dollars (bold strategy)**.
+
+```{r SolutionB}
+# Calculate the probability of the prisoner winning the game (bold strategy).
+
+```
