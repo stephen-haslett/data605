@@ -14,7 +14,7 @@ library(expm)
 ### Exercise 7
 Find the matrices $P^2, P^3, P^4$, and $P^n$ for the Markov chain determined by the transition matrix $P = \begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$.
 
-Do the same for the transition matrix $P =  \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$. Interpret what happens in each of these processes.
+Do the same for the transition matrix $P = \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$. Interpret what happens in each of these processes.
 
 ### Exercise 7 Solution
 
@@ -58,6 +58,20 @@ Pn
 ```
 
 
+#### Observations
+When $P = \begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$, then $P^n$ is always equal to $\begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$
+no matter how many times we multiply the matrix by itself.
+
+The below code proves this observation. In this example, we multiply the matrix by itself 500 times and we still get the same result.
+
+```{r observationOneProof}
+# Multiply the matrix P 500 times by itself, to prove that we always get the same result
+# no matter how many times we multiply the matrix by itself.
+Pn <- transition_matrix_one%^%500
+Pn
+```
+
+
 #### Find matrices $P^2$ through $P^n$ for the second transition matrix.
 
 Find the matrix $P^2$.
@@ -89,3 +103,24 @@ Pn
 
 
 #### Observations
+When $P =  \begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$ and $n$ is an even number, then $P^n$ is equal to $\begin{pmatrix}1 & 0\ \\0 & 1 \end{pmatrix}$.
+
+When $n$ is an odd number, then $P^n$ is equal to $\begin{pmatrix}0 & 1\ \\1 & 0 \end{pmatrix}$.
+
+The below examples prove that no matter how many times we multiply the matrix by itself, this observation holds true.
+
+
+```{r observationTwoEvenProof}
+# Multiply the matrix P 500 times by itself, to prove that we always
+# get the same result when n is an even number.
+Pn_even <- transition_matrix_two%^%500
+Pn_even
+```
+
+
+```{r observationTwoOddProof}
+# Multiply the matrix P 501 times by itself, to prove that we always
+# get the same result when n is an odd number.
+Pn_odd <- transition_matrix_two%^%501
+Pn_odd
+```
