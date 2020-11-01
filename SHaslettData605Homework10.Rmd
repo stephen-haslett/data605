@@ -23,15 +23,32 @@ he wins A dollars with probability .4 and loses A dollars with probability .6. F
 
 ### Solutions
 
-**(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**.
+Define the universal variables used in the game.
+```{r UniversalVariables}
+# Define the probability of winning.
+p <- 0.4
 
+# Define the probability of losing.
+q <- 0.6
 
-```{r SolutionA}
+# Calculate the ratio of winning probability to losing probability.
+ratio <- q/p
 
-
+# Define the minimum bet amount, and target win amount.
+bet <- 1
+win_target <- 8
 ```
 
 
-**Answer:**
+**(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**.
+
+```{r SolutionA}
+# Calculate the probability of the prisoner winning the game.
+win_probability <- (1 - ratio^bet) / (1 - ratio^win_target)
+probability_prisoner_wins <- round(win_probability, 2)
+probability_prisoner_wins
+```
+
+**Answer:** The probability that the prisoner will win the game is **0.02**.
 
 
