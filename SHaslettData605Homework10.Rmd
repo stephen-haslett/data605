@@ -38,8 +38,10 @@ x <- 1
 y <- 8
 ```
 
+\ 
 
-**(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**
+
+**(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**.
 
 We can calculate the probability of the prisoner winning \$8 before losing all of his money utilizing the following formula:
 $$P_{x} = \frac{(1 - \frac{q}{p})^{x}}{(1 - \frac{q}{p})^{y}}$$
@@ -65,21 +67,21 @@ In this scenario, we know that the prisoner will bet all of his money each time 
 \ 
 
 
-**First Bet:**
+**First bet:**
 _The prisoner only has **\$1** at this stage so his maximum bet will be **\$1**. If he wins, he will have **\$2** for the next bet_.
 
 
-**Second Bet:**
+**Second bet:**
 _Assuming the prisoner won the previous bet, he will bet **\$2** for this bet. If he wins, he now has **\$4** for the next bet_.
 
 
-**Final Bet:**
+**Final bet:**
 _If the prisoner makes it to this stage, he will bet **\$4**. If he wins, he will have **\$8**, which means he has won the game and the game ends_.
 
 \ 
 
 According to the above betting pattern, we know that the prisoner must win 3 consecutive bets in order to win the game and make bail. The probability of him
-winning the game is **0.4**, therefore we can calculate the probability of him winning the **\$8** is **$p^3$**
+winning the game is **0.4**, therefore we can calculate the probability of him winning the **\$8** using **$p^3$**.
 
 
 ```{r SolutionB}
@@ -92,6 +94,11 @@ probability_prisoner_wins
 **Answer:** The probability that the prisoner will win the \$8 and make bail is **0.06**.
 \ 
 
+\ 
 
+**(c) Which strategy gives Smith the better chance of getting out of jail?**
+\ 
 
-
+**Answer:**
+The bold strategy gives Smith a better chance of getting out of jail. Using the timid strategy, he has a 0.2 chance of winning whereas the bold strategy gives him
+a 0.06 chance of winning.
