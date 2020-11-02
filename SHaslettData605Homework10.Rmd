@@ -1,0 +1,104 @@
+---
+title: "DATA 605 Homework 10"
+author: "Stephen Haslett"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Problem
+Smith is in jail and has 1 dollar; he can get out on bail if he has 8 dollars. A guard agrees to make a series of bets with him. If Smith bets A dollars,
+he wins A dollars with probability .4 and loses A dollars with probability .6. Find the probability that he wins 8 dollars before losing all of his money if:
+
+
+(a) He bets 1 dollar each time (timid strategy).
+
+(b) He bets, each time, as much as possible but not more than necessary to bring his fortune up to 8 dollars (bold strategy).
+
+(c) Which strategy gives Smith the better chance of getting out of jail?
+
+### Solutions
+
+Define the universal variables used in the game.
+```{r UniversalVariables}
+# Define the probability of losing (q).
+q <- 0.6
+
+# Define the probability of winning (p).
+p <- 0.4
+
+# Calculate the probability ratio of winning to losing (q/p).
+ratio <- q/p
+
+# Define the minimum bet amount (x), and the amount needed to win the bet (y).
+x <- 1
+y <- 8
+```
+
+\ 
+
+
+**(a) Find the probability that he wins 8 dollars before losing all of his money if he bets 1 dollar each time (timid strategy)**.
+
+We can calculate the probability of the prisoner winning \$8 before losing all of his money utilizing the following formula:
+$$P_{x} = \frac{(1 - \frac{q}{p})^{x}}{(1 - \frac{q}{p})^{y}}$$
+
+Using the above formula, we can use R to calculate the probability of the prisoner winning as follows:
+
+```{r SolutionA}
+# Calculate the probability of the prisoner winning the game (timid strategy).
+win_probability <- (1 - ratio^x) / (1 - ratio^y)
+probability_prisoner_wins <- round(win_probability, 2)
+probability_prisoner_wins
+```
+
+**Answer:** The probability that the prisoner will win the game is **0.02**.
+\ 
+
+\ 
+
+**(b) He bets, each time, as much as possible but not more than necessary to bring his fortune up to 8 dollars (bold strategy)**.
+
+In this scenario, we know that the prisoner will bet all of his money each time he makes a bet. Therefore, the betting pattern will look like this:
+
+\ 
+
+
+**First bet:**
+_The prisoner only has **\$1** at this stage so his maximum bet will be **\$1**. If he wins, he will have **\$2** for the next bet_.
+
+
+**Second bet:**
+_Assuming the prisoner won the previous bet, he will bet **\$2** for this bet. If he wins, he now has **\$4** for the next bet_.
+
+
+**Final bet:**
+_If the prisoner makes it to this stage, he will bet **\$4**. If he wins, he will have **\$8**, which means he has won the game and the game ends_.
+
+\ 
+
+According to the above betting pattern, we know that the prisoner must win 3 consecutive bets in order to win the game and make bail. The probability of him
+winning the game is **0.4**, therefore we can calculate the probability of him winning the **\$8** using **$p^3$**.
+
+
+```{r SolutionB}
+# Calculate the probability of the prisoner winning the game (bold strategy).
+probability_prisoner_wins <- round(p^3, 2)
+probability_prisoner_wins
+```
+
+
+**Answer:** The probability that the prisoner will win the \$8 and make bail is **0.06**.
+\ 
+
+\ 
+
+**(c) Which strategy gives Smith the better chance of getting out of jail?**
+\ 
+
+**Answer:**
+The bold strategy gives Smith a better chance of getting out of jail. Using the timid strategy, he has a 0.2 chance of winning whereas the bold strategy gives him
+a 0.06 chance of winning.
