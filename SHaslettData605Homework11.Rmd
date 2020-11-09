@@ -1,0 +1,98 @@
+---
+title: "DATA 605 Homework 11"
+subtitle: "Assignment 11"
+author: "Stephen Haslett"
+date: "11/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(dplyr)
+library(broom)
+library(ggpubr)
+```
+
+### Problem
+Using the “cars” dataset in R, build a linear model for stopping distance as a function of speed and replicate the analysis of your textbook chapter 3 (visualization, quality evaluation of the model, and residual analysis.)
+
+### Data Analysis
+
+Load the cars dataset into R and take a quick look at the data.
+```{r dataSetUp}
+# Load the Cars dataset into R.
+cars_dataset <- datasets::cars
+# Summarize of the data.
+str(cars_dataset)
+``` 
+
+
+As we can see above, the Cars dataset comprises of 50 observations of 2 variables - **speed** (_the independent variable_), and **stopping distance (dist)** (_the dependent variable_). 
+Each row is an observation of the relation between car speed and the distance it takes for a car to stop.
+
+
+```{r, dataSummary}
+summary(cars_dataset)
+```
+
+
+### Does the dependent variable follow a normal distribution?
+
+```{r, dataHistogram}
+hist(cars_dataset$dist, col = 'blue', main = 'Stopping Distance (Dependent Variable) Distribution', xlab = 'Distance')
+```
+
+
+### Is the relationship between the indepentent and dependant variable linear?
+
+```{r, dataScatter}
+plot(dist ~ speed, data = cars_dataset, col = 'blue',
+     pch = 16, xlab = 'Speed (Independent Variable)', ylab = 'Stopping Distance (Dependent Variable)',
+     main = 'Relationship Between Speed and Stopping Distance')
+```
+
+
+### Linear Regression Analysis
+
+Is there a linear relationship between speed and stopping distance?
+
+```{r, dataLinearRegression}
+cars_dataset_lm <- lm(speed ~ dist, data = cars_dataset)
+summary(cars_dataset_lm)
+```
+
+#### Linear Model Summary Analysis
+
+1. The Multiple R-squared value above is a measurement of how well the model describes the data. For this model, the R-Squared value is **0.6511** which means
+that the model explains 65.11% of the data’s variation.
+
+2. The probability value (p-value) that the speed coefficient is not relevant in the model is **1.49e-12** which means that speed is highly relevant in modeling stopping distance. 
+
+
+Check if the residual means are close to zero. In this case they are as they hug the red lines in the graphs, which means our model is valid, and we can contune with our study
+
+
+```{r, dataParCheck}
+par(mfrow = c(2, 2))
+plot(cars_dataset_lm)
+par(mfrow = c(1, 1))
+```
+
+
+```{r}
+
+cars_dataset_graph <- ggplot(cars_dataset, aes(x = speed, y = dist)) + geom_point()
+cars_dataset_graph
+```
+
+```{r lnearRegressionLine}
+cars_dataset_graph <- cars_dataset_graph + geom_smooth(method = 'lm', col = 'red')
+cars_dataset_graph
+```
+
+
+
+
