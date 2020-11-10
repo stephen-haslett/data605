@@ -1,0 +1,85 @@
+---
+title: "DATA 605 Homework 11"
+subtitle: "Assignment 11"
+author: "Stephen Haslett"
+date: "11/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(dplyr)
+```
+
+### Problem
+Using the “cars” dataset in R, build a linear model for stopping distance as a function of speed and replicate the analysis of your textbook chapter 3 (visualization, quality evaluation of the model, and residual analysis.)
+
+### Data Analysis
+
+Load the cars dataset into R and take a quick look at the data.
+```{r dataSetUp}
+# Load the Cars dataset into R.
+cars_dataset <- datasets::cars
+# Summarize of the data.
+str(cars_dataset)
+``` 
+
+
+As we can see above, the Cars dataset comprises of 50 observations of 2 variables - **speed** (_the independent variable_), and **stopping distance (dist)** (_the dependent variable_). 
+Each row is an observation of the relation between car speed and the distance it takes for a car to stop.
+
+
+```{r, dataSummary}
+summary(cars_dataset)
+```
+
+
+### Is the relationship between the indepentent and dependant variable linear?
+
+```{r, dataScatter}
+plot(dist ~ speed, data = cars_dataset, col = 'blue',
+     pch = 16, xlab = 'Speed (Independent Variable)', ylab = 'Stopping Distance (Dependent Variable)',
+     main = 'Relationship Between Speed and Stopping Distance')
+abline(lm(dist ~ speed, data = cars_dataset), col = 'red')
+```
+
+From the above scatter plot we can see that Distance and Speed are positively correlated and whilst not perfectly linear, The relationship appears to be linear.
+
+### Linear Regression Analysis
+
+```{r, dataLinearRegression}
+cars_dataset_lm <- lm(speed ~ dist, data = cars_dataset)
+summary(cars_dataset_lm)
+```
+
+\ 
+
+#### Linear Model Summary Analysis
+
+1. The Multiple R-squared value above is a measurement of how well the model describes the data. For this model, the R-Squared value is **0.6511** which means
+that the model explains 65.11% of the data’s variation.
+
+2. The probability value (p-value) that the speed coefficient is not relevant in the model is **1.49e-12** which means that speed is highly relevant in modeling stopping distance. 
+
+3. For well fitted linear regression models, the residuals should be normally distributed with a mean as close to 0 as possible. The residuals median for this model is 0.3615 which is good.
+
+\ 
+
+#### Residual Analysis
+
+```{r, dataParCheck}
+par(mfrow = c(2, 2))
+plot(cars_dataset_lm)
+par(mfrow = c(1, 1))
+```
+
+From the **Residuals vs Fitted** plot above we can see that the residuals are not uniformly scattered above and below zero. It appears that as the fitted values increase, so do the residuals.
+
+The **Normal Q-Q** plot above tells us that the residuals from the model are not normally distributed. The 2 ends diverge from the diagonal line indicating that the residuals are not normally distributed.
+
+
+#### Conclusion
+From the above analysis, we can conclude that speed alone is an insufficent predictor in the model to explain the data and to predict stopping distance. To get a more accurate picture, we would most likely need to introduce additional predictors to our model such as weather, car weight, effectiveness of the car's brake pads, etc.

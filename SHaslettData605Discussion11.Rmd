@@ -1,0 +1,86 @@
+---
+title: "DATA 605 Discussion 11"
+subtitle: "Income vs Happiness"
+author: "Stephen Haslett"
+date: "11/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(dplyr)
+library(broom)
+library(ggpubr)
+```
+
+This experiment came from a Linear regression tutorial on Scribbr - https://www.scribbr.com/statistics/linear-regression-in-r
+
+
+The dataset contains observations about income and happiness taken from a sample of 500 people.
+
+```{r dataSetUp}
+# Import the CSV dataset into R.
+income_dataset_url <- 'https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-11/income_to_happy.csv'
+income_dataset <- read.csv(income_dataset_url)
+head(income_dataset)
+``` 
+
+Take a quick look at the data.
+
+```{r, dataSummary}
+summary(income_dataset)
+```
+
+
+### Does the dependent variable follow a normal distribution?
+
+```{r, dataHistogram}
+hist(income_dataset$happiness)
+```
+
+
+### Is the relationship between the indepentent and dependant variable linear?
+
+```{r, dataScatter}
+plot(happiness ~ income, data = income_dataset)
+```
+
+
+### Linear Regression Analysis
+
+Is there a linear relationship between income and happiness?
+
+```{r, dataLinearRegression}
+income_dataset_happiness_lm <- lm(happiness ~ income, data = income_dataset)
+summary(income_dataset_happiness_lm)
+```
+
+Check if the residual means are close to zero. In this case they are as they hug the red lines in the graphs, which means our model is valid, and we can contune with our study
+
+
+```{r, dataParCheck}
+par(mfrow = c(2,2))
+plot(income_dataset_happiness_lm)
+par(mfrow=c(1,1))
+```
+
+
+```{r}
+
+income_dataset_graph<-ggplot(income_dataset, aes(x=income, y=happiness))+
+                     geom_point()
+income_dataset_graph
+```
+
+```{r lnearRegressionLine}
+income_dataset_graph <- income_dataset_graph + geom_smooth(method="lm", col="black")
+
+income_dataset_graph
+```
+
+
+
+
