@@ -61,20 +61,29 @@ qplot(AverageEducation, CrimeRate, data = crime)
 ```{r, dataScatter}
 ```
 
+## Regression Model
 
 ```{r, dataLinearRegression}
-
+crime_regression_model <- lm(CrimeRate ~ ., data = crime)
+crime_regression_model
 ```
 
 
 
-```{r, dataParCheck}
+```{r, dataSummary}
+# Ensure R outputs the summary data in a non scientific format so that it is more readable
+# (i.e. '-691.837588' rather than '-6.918e+02').
+options(scipen = 4)
+
+# Output a summary of the data.
+summary(crime_regression_model)
 ```
 
 
+## Residual Analysis
 
-
-```{r lnearRegressionLine}
+```{r residualAnalysis}
+plot(crime_regression_model)
 ```
 
 
