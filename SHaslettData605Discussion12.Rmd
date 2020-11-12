@@ -1,0 +1,82 @@
+---
+title: "DATA 605 Discussion 12"
+subtitle: "Predicting US state crime rates based on socioeconomic and demographic data."
+author: "Stephen Haslett"
+date: "11/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(tidyverse)
+library(GGally)
+library(knitr)
+```
+
+
+
+```{r dataSetUp}
+# Import the crime statistics dataset.
+crime <- read_delim('https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-12/CrimeStats.txt', delim = '\t')
+crime
+``` 
+
+
+
+```{r, dataCleanup}
+# Rename the variables in the dataset to make them more meaningful.
+crime <- crime %>%
+  rename(CrimeRate = R,
+         YoungMales = Age,
+         SouthernState = S,
+         AverageEducation = Ed,
+         PoliceExpenditure1960 = Ex0,
+         PoliceExpenditure1959 = Ex1,
+         Employment = LF,
+         MaleFemaleRatio = M,
+         Population = N,
+         Minority = NW,
+         UnemploymentRateYouth = U1,
+         UnemploymentRateAdult = U2,
+         MedianAssets = W,
+         LowIncomeFamilies = X) %>%
+  mutate(SouthernState = as.factor(SouthernState),
+         AverageEducation = AverageEducation / 10,
+         MedianAssets = MedianAssets / 100)
+
+# Summarize the data.
+summary(crime)
+```
+
+### Data Exploration
+```{r, crimeScatterPlot}
+qplot(AverageEducation, CrimeRate, data = crime)
+```
+
+
+
+
+```{r, dataScatter}
+```
+
+
+```{r, dataLinearRegression}
+
+```
+
+
+
+```{r, dataParCheck}
+```
+
+
+
+
+```{r lnearRegressionLine}
+```
+
+
+
+
