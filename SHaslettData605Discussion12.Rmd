@@ -1,6 +1,6 @@
 ---
 title: "DATA 605 Discussion 12"
-subtitle: "Predicting US state crime rates based on socioeconomic and demographic data."
+subtitle: "Is there a relationship between a person's height and their father's height?."
 author: "Stephen Haslett"
 date: "11/09/2020"
 output: html_document
@@ -10,80 +10,68 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load the necessary libraries.
-library(tidyverse)
-library(GGally)
 library(knitr)
 ```
 
+**Using simple linear regression, we want to answer the question "Is there a relationship between a person's height and their father's height?"**
 
+### The Dataset
+For this investigation we will use a dataset compiled by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) that contains data about the heights of children and their parents.
 
+First we will import the dataset into R and take a brief look at the data.
 ```{r dataSetUp}
-# Import the crime statistics dataset.
-crime <- read_delim('https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-12/CrimeStats.txt', delim = '\t')
-crime
-``` 
+# Import Galton's dataset.
+family_height_data <-  read.csv("http://cknudson.com/data/Galton.csv")
+kable(head(family_height_data), format = 'markdown')
 
-
-
-```{r, dataCleanup}
-# Rename the variables in the dataset to make them more meaningful.
-crime <- crime %>%
-  rename(CrimeRate = R,
-         YoungMales = Age,
-         SouthernState = S,
-         AverageEducation = Ed,
-         PoliceExpenditure1960 = Ex0,
-         PoliceExpenditure1959 = Ex1,
-         Employment = LF,
-         MaleFemaleRatio = M,
-         Population = N,
-         Minority = NW,
-         UnemploymentRateYouth = U1,
-         UnemploymentRateAdult = U2,
-         MedianAssets = W,
-         LowIncomeFamilies = X) %>%
-  mutate(SouthernState = as.factor(SouthernState),
-         AverageEducation = AverageEducation / 10,
-         MedianAssets = MedianAssets / 100)
-
-# Summarize the data.
-summary(crime)
+# Count the number of observations in the dataset.
+nrow(family_height_data)
 ```
+
+As we can see from the above, the dataset contains 6 variables: _Family ID_, _Father's Height_, _Mother's Height_, _Gender_, _Height_, and _Number of Kids_, and **898** observations.
+
 
 ### Data Exploration
-```{r, crimeScatterPlot}
-qplot(AverageEducation, CrimeRate, data = crime)
+The first step of our data exploration is to look at a summary of the data.
+
+```{r, dataSummary}
+# Summarize the dataset.
+options(knitr.kable.NA = '')
+kable(summary(family_height_data), format = 'markdown')
 ```
 
 
 
 
-```{r, dataScatter}
+```{r, medianAssetsScatter}
+
 ```
+
+
+
 
 ## Regression Model
 
 ```{r, dataLinearRegression}
-crime_regression_model <- lm(CrimeRate ~ ., data = crime)
-crime_regression_model
+
 ```
 
 
 
-```{r, dataSummary}
+```{r, data}
 # Ensure R outputs the summary data in a non scientific format so that it is more readable
 # (i.e. '-691.837588' rather than '-6.918e+02').
-options(scipen = 4)
+#options(scipen = 4)
 
 # Output a summary of the data.
-summary(crime_regression_model)
+
 ```
 
 
 ## Residual Analysis
 
 ```{r residualAnalysis}
-plot(crime_regression_model)
+
 ```
 
 
