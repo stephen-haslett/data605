@@ -1,6 +1,6 @@
 ---
 title: "DATA 605 Discussion 12"
-subtitle: "Is there a relationship between a person's height and their father's height?."
+subtitle: "Is height hereditary?"
 author: "Stephen Haslett"
 date: "11/09/2020"
 output: html_document
@@ -10,37 +10,55 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load the necessary libraries.
+library(tidyverse)
 library(knitr)
+library(HistData)
 ```
 
-**Using simple linear regression, we want to answer the question "Is there a relationship between a person's height and their father's height?"**
+**Using simple linear regression, we want to answer the question "Is there a relationship between a son's height and his father's height?"**
 
 ### The Dataset
 For this investigation we will use a dataset compiled by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) that contains data about the heights of children and their parents.
 
-First we will import the dataset into R and take a brief look at the data.
+First we will import the dataset into R (the dataset can be accessed via the HistData R package) and take a brief look at the data.
 ```{r dataSetUp}
-# Import Galton's dataset.
-family_height_data <-  read.csv("http://cknudson.com/data/Galton.csv")
-kable(head(family_height_data), format = 'markdown')
+# Import Galton's dataset from the HistData package.
+data('GaltonFamilies')
+galton_height_data <- GaltonFamilies
+kable(head(galton_height_data), format = 'markdown')
 
 # Count the number of observations in the dataset.
-nrow(family_height_data)
+nrow(galton_height_data)
 ```
 
-As we can see from the above, the dataset contains 6 variables: _Family ID_, _Father's Height_, _Mother's Height_, _Gender_, _Height_, and _Number of Kids_, and **898** observations.
+As we can see from the above, the dataset contains 8 variables: _family_, _father_, _mother_, _midparentHeight_, _children_, _childNum_, _gender_, and _childHeight_. The dataset contains **934** observations. Since we are only interested in how a father's height influences his son's height, we can ignore a lot of these variables and create a new dataset containing data relevant to sons and father.
+
+```{r, fatherSonDataSet}
+# Create a new dataset containing information releveant to fathers and their sons.
+father_son_heights <- GaltonFamilies %>%
+  filter(gender == 'male') %>%
+  group_by(family) %>%
+  sample_n(1) %>%
+  ungroup() %>%
+  select(father, childHeight) %>%
+  rename(son = childHeight)
+
+kable(head(father_son_heights), format = 'markdown')
+```
+
+
 
 
 ### Data Exploration
-The first step of our data exploration is to look at a summary of the data.
+The first step in our data exploration is to take a look at a mean, and standard deviation for the father and son variables.
 
 ```{r, dataSummary}
 # Summarize the dataset.
 options(knitr.kable.NA = '')
-kable(summary(family_height_data), format = 'markdown')
+father_son_heights %>% summarize(mean(father), sd(father), mean(son), sd(son))
 ```
 
-
+Looking at the data summary, 
 
 
 ```{r, medianAssetsScatter}
