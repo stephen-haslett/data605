@@ -80,6 +80,17 @@ who_simple_regression <- lm(LifeExp ~ TotExp, who_dataset)
 summary(who_simple_regression)
 ```
 
+**F statistics:**
+
+**R-squared:** The R-squared value is low (0.2577), suggesting that the model only explains 25.77% of the data variation.
+
+**Standard error:** The standard error is significantly high which suggests that the model does not fit well. 
+
+**P-values:** The low p-values suggest that govenerment expenditure does contribute to a country's life expectancy. Therefore the 'TotExp'variable does contribute to the model. 
+
+
+
+
 2. Raise life expectancy to the 4.6 power (i.e., LifeExp^4.6). Raise total expenditures to the 0.06 power (nearly a log transform, TotExp^.06). Plot LifeExp^4.6 as a function of TotExp^.06, and r re-run the simple regression model using the transformed variables. Provide and interpret the F statistics, R^2, standard error, and p-values. Which model is "better?"
 
 
