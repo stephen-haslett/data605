@@ -1,0 +1,94 @@
+---
+title: "DATA 605 Homework 12"
+subtitle: "Assignment 12"
+author: "Stephen Haslett"
+date: "11/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+### Problem
+The who.csv dataset contains real-world data from 2008. The variables included follow:
+
+Country: name of the country
+
+LifeExp: average life expectancy for the country in years
+
+InfantSurvival: proportion of those surviving to one year or more
+
+Under5Survival: proportion of those surviving to five years or more
+
+TBFree: proportion of the population without TB.
+
+PropMD: proportion of the population who are MDs
+
+PropRN: proportion of the population who are RNs
+
+PersExp: mean personal expenditures on healthcare in US dollars at average exchange rate
+
+GovtExp: mean government expenditures per capita on healthcare, US dollars at average exchange rate
+
+TotExp: sum of personal and government expenditures.
+
+
+### Load the dataset into R and take a glance at it's structure.
+```{r dataSetUp}
+# Load the who dataset into R.
+who_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-12/who.csv')
+
+# Attach the dataset so we can access the variables easily.
+attach(who_dataset)
+
+# View the first 10 observations in the dataset to get a sense of how the data is structured.
+kable(head(who_dataset, 10),  format = 'markdown')
+``` 
+
+\ 
+
+### Questions
+
+1. Provide a scatterplot of LifeExp~TotExp, and run simple linear regression. Do not transform the variables. Provide and interpret the F statistics, R^2, standard error,and p-values only. Discuss whether the assumptions of simple linear regression met.
+
+##### Scatterplot of LifeExp~TotExp
+
+```{r answerOne}
+# Create a scatter plot of life expectancy by mean government expenditures per capita on healthcare.
+life_expectancy_plot <- ggplot(who_dataset, aes(x = TotExp, y = LifeExp)) + geom_point(color = "salmon") +
+    ylab("Life Expectancy") + xlab("Government Expenditures Per Capita on Healthcare")
+
+life_expectancy_plot
+```
+
+
+##### Provide and interpret the F statistics, R^2, standard error, and p-values
+
+```{r answerOneRegression}
+# Simple linear regression.
+who_simple_regression <- lm(LifeExp ~ TotExp, who_dataset)
+
+# Run the summary function on the model so we can interpret the F statistics, 
+# R-squared, standard error, and p-values.
+summary(who_simple_regression)
+```
+
+2. Raise life expectancy to the 4.6 power (i.e., LifeExp^4.6). Raise total expenditures to the 0.06 power (nearly a log transform, TotExp^.06). Plot LifeExp^4.6 as a function of TotExp^.06, and r re-run the simple regression model using the transformed variables. Provide and interpret the F statistics, R^2, standard error, and p-values. Which model is "better?"
+
+
+
+
+3. Using the results from 3, forecast life expectancy when TotExp^.06 =1.5. Then forecast life expectancy when TotExp^.06=2.5.
+
+
+
+4. Build the following multiple regression model and interpret the F Statistics, R^2, standard error, and p-values. How good is the model?
+_LifeExp = b0+b1 x PropMd + b2 x TotExp + b3 x PropMD x TotExp_
+
