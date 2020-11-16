@@ -145,7 +145,29 @@ summary(adjusted_model)
 
 3. Using the results from 3, forecast life expectancy when TotExp^.06 =1.5. Then forecast life expectancy when TotExp^.06=2.5.
 
+We can use the formula from the adjusted model in question 2 to answer this question: $$LifeExp = -736527910 + 620060216 \times TotExp$$
 
+##### Life expectancy when TotExp^.06 = 1.5
+
+```{r answerThreeA}
+life_expectancy <- -736527910 + 620060216 * 1.5
+round(life_expectancy ^ (1/4.6), 2)
+```
+
+**Answer**: 63.31
+
+\ 
+
+##### Life expectancy when TotExp^.06 = 2.5
+
+```{r answerThreeB}
+life_expectancy <- -736527910 + 620060216 * 2.5
+round(life_expectancy ^ (1/4.6), 2)
+```
+
+**Answer**: 86.51
+
+\ 
 
 4. Build the following multiple regression model and interpret the F Statistics, R^2, standard error, and p-values. How good is the model?
 _LifeExp = b0+b1 x PropMd + b2 x TotExp + b3 x PropMD x TotExp_
