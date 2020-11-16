@@ -150,6 +150,7 @@ We can use the formula from the adjusted model in question 2 to answer this ques
 ##### Life expectancy when TotExp^.06 = 1.5
 
 ```{r answerThreeA}
+# Life expectancy when TotExp^.06 = 1.5.
 life_expectancy <- -736527910 + 620060216 * 1.5
 round(life_expectancy ^ (1/4.6), 2)
 ```
@@ -161,6 +162,7 @@ round(life_expectancy ^ (1/4.6), 2)
 ##### Life expectancy when TotExp^.06 = 2.5
 
 ```{r answerThreeB}
+# Life expectancy when TotExp^.06 = 2.5.
 life_expectancy <- -736527910 + 620060216 * 2.5
 round(life_expectancy ^ (1/4.6), 2)
 ```
@@ -170,5 +172,32 @@ round(life_expectancy ^ (1/4.6), 2)
 \ 
 
 4. Build the following multiple regression model and interpret the F Statistics, R^2, standard error, and p-values. How good is the model?
-_LifeExp = b0+b1 x PropMd + b2 x TotExp + b3 x PropMD x TotExp_
+$$LifeExp = b0+b1 x PropMd + b2 x TotExp + b3 x PropMD x TotExp$$
+
+```{r answerFour}
+# Create the multiple regression model.
+who_multiple_regression <- lm(LifeExp ~ PropMD + TotExp + PropMD * TotExp, who_dataset)
+
+# Run the summary function on the model so we can interpret the F statistics, 
+# R-squared, standard error, and p-values.
+summary(who_multiple_regression)
+```
+
+**F-statistic:** The F-statistic is significant and the p-value is low, so we can reject the null hypothesis and conclude that the response variables contribute to the true value of the dependent variable. 
+
+
+**R-squared:** The R-squared value is low (0.3574), suggesting that the model only explains 35.74% of the data variation.
+
+**Standard error:** The standard error (8.765) is significantly high which suggests that the model does not fit well. 
+
+**P-values:** The low p-values suggest that the response variables contribute to the true value of the dependent variable. 
+
+
+5. Forecast LifeExp when PropMD=.03 and TotExp = 14. Does this forecast seem realistic? Why or why not?
+
+
+
+
+
+
 
