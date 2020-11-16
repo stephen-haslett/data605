@@ -16,7 +16,7 @@ library(kableExtra)
 library(dplyr)
 ```
 
-### Problem
+### Dataset Description
 The who.csv dataset contains real-world data from 2008. The variables included follow:
 
 Country: name of the country
@@ -192,12 +192,19 @@ summary(who_multiple_regression)
 
 **P-values:** The low p-values suggest that the response variables contribute to the true value of the dependent variable. 
 
+\ 
 
-5. Forecast LifeExp when PropMD=.03 and TotExp = 14. Does this forecast seem realistic? Why or why not?
+5. Forecast LifeExp when PropMD = .03 and TotExp = 14. Does this forecast seem realistic? Why or why not?
 
+```{r answerFive}
+PropMD = 0.03
+TotExp = 14
+variable_values <- data.frame(PropMD, TotExp)
 
+life_expectancy <- predict(who_multiple_regression, variable_values, interval = 'predict')
+life_expectancy
+```
 
-
-
+**Answer:** The forcast is not realistic as it is very rare that a person lives to the age of 107.
 
 
