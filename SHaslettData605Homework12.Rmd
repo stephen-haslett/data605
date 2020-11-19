@@ -1,0 +1,210 @@
+---
+title: "DATA 605 Homework 12"
+subtitle: "Assignment 12"
+author: "Stephen Haslett"
+date: "11/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+### Dataset Description
+The who.csv dataset contains real-world data from 2008. The variables included follow:
+
+Country: name of the country
+
+LifeExp: average life expectancy for the country in years
+
+InfantSurvival: proportion of those surviving to one year or more
+
+Under5Survival: proportion of those surviving to five years or more
+
+TBFree: proportion of the population without TB.
+
+PropMD: proportion of the population who are MDs
+
+PropRN: proportion of the population who are RNs
+
+PersExp: mean personal expenditures on healthcare in US dollars at average exchange rate
+
+GovtExp: mean government expenditures per capita on healthcare, US dollars at average exchange rate
+
+TotExp: sum of personal and government expenditures.
+
+
+### Load the dataset into R and take a glance at it's structure.
+```{r dataSetUp}
+# Load the who dataset into R.
+who_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-12/who.csv')
+
+# Attach the dataset so we can access the variables easily.
+attach(who_dataset)
+
+# View the first 10 observations in the dataset to get a sense of how the data is structured.
+kable(head(who_dataset, 10),  format = 'markdown')
+``` 
+
+\ 
+
+### Questions
+
+1. Provide a scatterplot of LifeExp~TotExp, and run simple linear regression. Do not transform the variables. Provide and interpret the F statistics, R^2, standard error,and p-values only. Discuss whether the assumptions of simple linear regression met.
+
+\ 
+
+##### Scatterplot of LifeExp~TotExp
+
+```{r answerOne}
+# Create a scatter plot of life expectancy by mean government expenditures per capita on healthcare.
+life_expectancy_plot <- ggplot(who_dataset, aes(x = TotExp, y = LifeExp)) + geom_point(color = "salmon") +
+    ylab("Life Expectancy") + xlab("Government Expenditures Per Capita on Healthcare")
+
+life_expectancy_plot
+```
+
+
+##### Provide and interpret the F statistics, R^2, standard error, and p-values
+
+```{r answerOneRegression}
+# Simple linear regression.
+who_simple_regression <- lm(LifeExp ~ TotExp, who_dataset)
+
+# Run the summary function on the model so we can interpret the F statistics, 
+# R-squared, standard error, and p-values.
+summary(who_simple_regression)
+```
+
+**F-statistic:** The F-statistic is high enough for us to reject the null hyopthesis that "_government expenditures on healthcare do not contribute to a country’s life expentancy_". We can therefore say that the "TotExp" variable does have an effect on the "LifeExp" variable.
+
+**R-squared:** The R-squared value is low (0.2577), suggesting that the model only explains 25.77% of the data variation.
+
+**Standard error:** The standard error is significantly high which suggests that the model does not fit well. 
+
+**P-values:** The low p-values suggest that govenerment expenditure does contribute to a country's life expectancy. Therefore the 'TotExp'variable does contribute to the model. 
+
+\ 
+
+
+2. Raise life expectancy to the 4.6 power (i.e., LifeExp^4.6). Raise total expenditures to the 0.06 power (nearly a log transform, TotExp^.06). Plot LifeExp^4.6 as a function of TotExp^.06, and re-run the simple regression model using the transformed variables. Provide and interpret the F statistics, R^2, standard error, and p-values. Which model is "better?"
+
+\ 
+
+##### Raise life expectancy to the 4.6 power (LifeExp^4.6). Raise total expenditures to the 0.06 power (TotExp^.06)
+
+```{r answerTwoRaise}
+# Raise the life expectancy variable to the power of 4.6.
+life_expectancy_46 = who_dataset$LifeExp^(4.6)
+
+# Raise the total expenditures variable to the power of 0.6.
+total_expenditures_06 = who_dataset$TotExp^(0.06)
+```
+
+\ 
+
+##### Plot LifeExp^4.6 as a function of TotExp^.06, and re-run the simple regression model using the transformed variables.
+
+```{r answerTwoPlot}
+# Create a scatter plot for LifeExp^4.6 as a function of TotExp^.06.
+plot(total_expenditures_06, life_expectancy_46, main='LifeExp^4.6 as a function of TotExp^.06',
+     ylab = 'Life Expectancy',
+     xlab = 'Total Expenditure',
+     col = 2)
+
+# Re-run the simple regression model on the adjusted variables.
+adjusted_model = lm(life_expectancy_46 ~ total_expenditures_06)
+abline(adjusted_model, col = 1)
+```
+
+\ 
+
+##### Provide and interpret the F statistics, R^2, standard error, and p-values. Which model is "better?".
+
+```{r answerTwoSummary}
+# Run the summary function on the adjusted  model so we can interpret
+# the F statistics, R-squared, standard error, and p-values.
+summary(adjusted_model)
+```
+
+**F-statistic:** The F-statistic for this model is much higher than that of the unadjusted model in question 1. The p-value is also much lower and therefore we can confirm that this model is much better than the unadjusted model in question 1.
+
+**R-squared:** The R-squared value (0.7298) is also much higher than that of the unadjusted model. The unadjusted model only explained 25.77% of the data variation whereas this model explains 72.98% of the data variation.
+
+**Standard error:** The standard error for this model is surprisingly high considering the positive F-statistic and R-squared values. This may be explained by the fact that we raised the LifeExp and TotExp variables exponentially.
+
+**P-values:** The p-values for this model are much lower than those of the unadjusted model giving us more confidence that the 'TotExp'variable contributes to the model.
+
+\ 
+
+3. Using the results from 3, forecast life expectancy when TotExp^.06 =1.5. Then forecast life expectancy when TotExp^.06=2.5.
+
+We can use the formula from the adjusted model in question 2 to answer this question: $$LifeExp = -736527910 + 620060216 \times TotExp$$
+
+##### Life expectancy when TotExp^.06 = 1.5
+
+```{r answerThreeA}
+# Life expectancy when TotExp^.06 = 1.5.
+life_expectancy <- -736527910 + 620060216 * 1.5
+round(life_expectancy ^ (1/4.6), 2)
+```
+
+**Answer**: 63.31
+
+\ 
+
+##### Life expectancy when TotExp^.06 = 2.5
+
+```{r answerThreeB}
+# Life expectancy when TotExp^.06 = 2.5.
+life_expectancy <- -736527910 + 620060216 * 2.5
+round(life_expectancy ^ (1/4.6), 2)
+```
+
+**Answer**: 86.51
+
+\ 
+
+4. Build the following multiple regression model and interpret the F Statistics, R^2, standard error, and p-values. How good is the model?
+$$LifeExp = b0+b1 x PropMd + b2 x TotExp + b3 x PropMD x TotExp$$
+
+```{r answerFour}
+# Create the multiple regression model.
+who_multiple_regression <- lm(LifeExp ~ PropMD + TotExp + PropMD * TotExp, who_dataset)
+
+# Run the summary function on the model so we can interpret the F statistics, 
+# R-squared, standard error, and p-values.
+summary(who_multiple_regression)
+```
+
+**F-statistic:** The F-statistic is significant and the p-value is low, so we can reject the null hypothesis and conclude that the response variables contribute to the true value of the dependent variable. 
+
+
+**R-squared:** The R-squared value is low (0.3574), suggesting that the model only explains 35.74% of the data variation.
+
+**Standard error:** The standard error (8.765) is significantly high which suggests that the model does not fit well. 
+
+**P-values:** The low p-values suggest that the response variables contribute to the true value of the dependent variable. 
+
+\ 
+
+5. Forecast LifeExp when PropMD = .03 and TotExp = 14. Does this forecast seem realistic? Why or why not?
+
+```{r answerFive}
+PropMD = 0.03
+TotExp = 14
+variable_values <- data.frame(PropMD, TotExp)
+
+life_expectancy <- predict(who_multiple_regression, variable_values, interval = 'predict')
+life_expectancy
+```
+
+**Answer:** The forcast is not realistic as it is very rare that a person lives to the age of 107.
+
+

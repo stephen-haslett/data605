@@ -1,0 +1,129 @@
+---
+title: "DATA 605 Discussion 12"
+subtitle: "Is height hereditary?"
+author: "Stephen Haslett"
+date: "11/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(dplyr)
+library(tidyverse)
+library(knitr)
+library(HistData)
+library(ggplot2)
+```
+
+**Using simple linear regression, we want to answer the question "Is there a relationship between a child's height and the height of their parents?"**
+
+### The Dataset
+For this investigation we will use a dataset compiled by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) that contains data about the heights of children and their parents.
+
+First we will import the dataset into R (the dataset can be accessed via the HistData R package) and take a brief look at the data.
+```{r dataSetUp}
+# Import Galton's dataset from the HistData package.
+data('Galton')
+galton_height_data <- GaltonFamilies
+kable(head(galton_height_data), format = 'markdown')
+
+# Count the number of observations in the dataset.
+nrow(galton_height_data)
+```
+
+As we can see from the above, the dataset contains **934** observations, and 8 variables: _family_, _father_, _mother_, _midparentHeight_, _children_, _childNum_, _gender_, and _childHeight_.
+
+In order to assess if there is a relationship between a child's height and their parents' height, we can plot the data
+in a scatter graph. This allows us to easily assess if a relationship exists.
+
+```{r, parentChildHeightScatterPlot}
+# PLot a scatter plot of the Galton dataset.
+galton_plot <- ggplot(Galton, aes(x = parent, y = child)) + geom_point(color = "blue") +
+    ylab("Child's Height in Inches") + xlab("Parents' Height in Inches")
+
+galton_plot
+```
+
+
+### Data Exploration
+Looking at the above scatter plot, it does appear that there is a relationship between the height of a child's parents, and the height of the child. As the parents' height increases, so does the child's height. To confirm this, we can take a look at the correlation between the 2 variables (child's height vs parents' height).  
+
+##### Correlation
+
+```{r, correlation}
+# Calculate the correlation between the 2 variables.
+round(cor(Galton$parent, Galton$child), 2)
+```
+
+The correlation between the 2 variables is **0.46** which confirms that there is a strong relationship between the 2 variables.
+
+##### Distribution normality of the dependent variable (child's height)
+
+The next thing we want to check is the distribution normality for the dependent variable (child's height). We can check this by plotting a histogram and seeing
+if the distribution is bell shapped.
+
+
+```{r, distributionNormality}
+hist(Galton$child)
+```
+
+The distribution is close to normal (bell shapped) and therefore we can proceed to check the linearity of the variables.
+
+##### Linearity of the relationship between parents' height and child's height
+
+```{r linearity}
+plot(parent ~ child, Galton)
+```
+
+The relationship between a child's height and their parents' height is not overly apparent, but it is linear and thus we can move forward with building the regression model. 
+
+
+## Regression Model
+The goal of our regression model is to predict the height of a child (_response/dependent variable_) based on their parents' height (_predictor/independent variable_).
+
+##### Build the regression model
+The first step is to build the regression model using R's lm() function.
+
+```{r, regressionModel}
+galton_height_model <- lm(parent ~ child, Galton)
+summary(galton_height_model)
+```
+
+
+
+
+
+
+
+
+```{r, regressionPlot}
+regression_plot <-ggplot(Galton, aes(x = parent, y = child)) + geom_point(color = "blue") + 
+    ylab("Child's height in inches") + xlab("Parents' average height in inches") + 
+    geom_smooth(data = Galton, method = "lm", se = FALSE, color = "black", size = 0.5)
+
+regression_plot
+```
+
+
+
+```{r, data}
+# Ensure R outputs the summary data in a non scientific format so that it is more readable
+# (i.e. '-691.837588' rather than '-6.918e+02').
+#options(scipen = 4)
+
+# Output a summary of the data.
+
+```
+
+
+## Residual Analysis
+
+```{r residualAnalysis}
+
+```
+
+
+
+
