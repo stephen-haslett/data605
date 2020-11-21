@@ -1,0 +1,60 @@
+---
+title: "DATA 605 Discussion 13"
+subtitle: "What factors determine used car prices"
+author: "Stephen Haslett"
+date: "11/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(dplyr)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+#### Assignment Question
+Using R, build a multiple regression model for data that interests you. Include in this model at least one quadratic term, one dichotomous term, and one dichotomous vs. quantitative interaction term.  Interpret all coefficients. Conduct residual analysis.  Was the linear model appropriate? Why or why not?
+
+#### Assignment Response.
+My response to this weeks discussion topic was inspired by a paper by Shounda Kuiper called "Introduction to Multiple Regression: How Much Is Your Car Worth?" The data set I will use for this discussion was collected from Kelly Blue Book comprising of 804 observations of used GM cars. The dataset can be downloaded via the [Journal of Statistics Education](http://jse.amstat.org/jse_data_archive.htm) data archive (the original file name is kuiper.xls).
+
+##### Dataset Exploration
+First we will import the dataset into R and then take a brief look at the data.
+```{r dataSetUp}
+# Load the Kelly Blue Book used GM cars dataset into R. 7 of the columns in the data set
+# contain only NA values, so we only import the first 12 columns that contain actual data.
+cars_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data605/data605-week-13/KellyBlueBookCarSales.csv')[ ,1:12]
+
+# Attach the dataset so we can easily access the variables.
+attach(cars_dataset)
+
+# Look at a sample of the dataset, and count the number of observations.
+kable(head(cars_dataset, 50), format = 'markdown')
+nrow(cars_dataset)
+```
+
+As we can see from the above table, the dataset contains **804** observations of used GM cars, and 12 variables: _Price_, _Mileage_, _Make_, _Model_, _Trim_, _Type_, _Cylinder_, _Liter_, _Doors_, _Cruise_, _Sound_, and _Leather_.
+
+The aim of this exercise is to establish which of the following variables are the best predictors of car price: _Mileage_, _Make_, _Model_, _Trim_, _Type_, _Cylinder_, _Liter_, _Doors_, _Cruise_, _Sound_, _Leather_. 
+
+#### Linear Models
+
+##### Mileage vs price model
+We will start with the mileage variable as this is the most obvious predictor of car price. For this, we will run a simple linear model to see if this is indeed the case.
+```{r, simpleMileageModel}
+# Run a model to check if car mileage has a linear relationship with car price.
+priceMileageModel <- lm(Price ~ Mileage, cars)
+summary(priceMileageModel)
+```
+
+
+
+
+
+
+
+
