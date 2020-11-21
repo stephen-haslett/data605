@@ -33,7 +33,7 @@ cars_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data
 attach(cars_dataset)
 
 # Look at a sample of the dataset, and count the number of observations.
-kable(head(cars_dataset, 50), format = 'markdown')
+kable(head(cars_dataset), format = 'markdown')
 nrow(cars_dataset)
 ```
 
@@ -41,20 +41,39 @@ As we can see from the above table, the dataset contains **804** observations of
 
 The aim of this exercise is to establish which of the following variables are the best predictors of car price: _Mileage_, _Make_, _Model_, _Trim_, _Type_, _Cylinder_, _Liter_, _Doors_, _Cruise_, _Sound_, _Leather_. 
 
+\ 
+
 #### Linear Models
+
+\ 
 
 ##### Mileage vs price model
 We will start with the mileage variable as this is the most obvious predictor of car price. For this, we will run a simple linear model to see if this is indeed the case.
-```{r, simpleMileageModel}
+```{r, priceMileageModel}
 # Run a model to check if car mileage has a linear relationship with car price.
 priceMileageModel <- lm(Price ~ Mileage, cars)
 summary(priceMileageModel)
 ```
 
+The **4.68** p-value reported by the model summary tells us that there is a strong relationship between the mileage of a car and its price.
+However, the R-squared value is only **0.02** which means mileage only explains **2**% of the variance. To explore this further, we can plot the results visually
+to get a better picture of the variance.
 
+```{r, priceMileagePlot}
+plot(Price ~ Mileage, cars, main = 'Mileage Vs Car Price')
+abline(priceMileageModel, col = "red", lwd = 3)
+```
 
+From the above plot, we can see that there is a lot of variation in the data, with a lot of outliers. Despite this, there is still
+a strong relatioship between mileage and price. In order to explain some of those outliers and increase the R-squared value of our model,
+let's pull in some more variables.
 
+```{r, priceMileageModelExpanded}
+# Run a new Price ~ Mileage model, but add the Make and Type variables to
+# the model to see if our R-squared value increases.
+priceMultipleModel <- lm(Price ~ Mileage + Make + Type, cars)
+summary(priceMultipleModel)
+```
 
-
-
-
+After adding the Make and Type variables to the model, our R-squared values has jumped from **0.02** to **0.78** which is a significant increase.
+We have gone from explaining **2**% of the variance, to explaining **78**% of the variance. 
