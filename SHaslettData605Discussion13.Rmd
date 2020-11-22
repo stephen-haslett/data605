@@ -77,3 +77,25 @@ summary(priceMultipleModel)
 
 After adding the Make and Type variables to the model, our R-squared values has jumped from **0.02** to **0.78** which is a significant increase.
 We have gone from explaining **2**% of the variance, to explaining **78**% of the variance. 
+
+Next I want to add a **dichotomous** variable to the model to see what effect it has on price. We will add the dichotomous variable "Leather" to the model. 
+
+```{r, priceMileageModelExpanded2}
+# Add the dichotomous term Leather to the model.
+priceMultipleModel <- lm(Price ~ Mileage + Make + Type + Leather, cars)
+summary(priceMultipleModel)
+```
+
+After adding the dichotomous variable Leather to the model, it appears that our R-squared values was slightly increased, so while it does have significance in terms of price, it appears the significance is marginal.
+
+Finally we will add the **quadratic** variable Cylinder to the model.
+
+```{r, priceMileageModelExpanded3}
+# Add the quadratic term Cylinder to the model.
+priceMultipleModel <- lm(Price ~ Mileage + Make + Type + Leather + Cylinder, cars)
+summary(priceMultipleModel)
+```
+
+
+
+Adding the quadratic variable Cylinder to our model resulted in a significant increase in our R-squared value. Our model now explains **91**% of the variance. 
