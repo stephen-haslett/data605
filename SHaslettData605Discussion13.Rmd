@@ -99,3 +99,29 @@ summary(priceMultipleModel)
 
 
 Adding the quadratic variable Cylinder to our model resulted in a significant increase in our R-squared value. Our model now explains **91**% of the variance. 
+
+
+#### Residual Analysis
+
+```{r, residualsHist}
+# Plot a histogram of the multiple regression model's residuals.
+hist(priceMultipleModel$residuals, main = 'Histogram of Residuals')
+```
+
+
+```{r, residualsScatter}
+plot(priceMultipleModel$residuals, main = 'Scatter Plot of Residuals')
+abline(a = 0, b = 0, col = "red")
+```
+
+```{r, residualsQQPlot}
+qqnorm(priceMultipleModel$residuals)
+qqline(priceMultipleModel$residuals)
+```
+
+
+
+
+
+
+
