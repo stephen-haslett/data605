@@ -98,28 +98,30 @@ summary(priceMultipleModel)
 
 
 
-Adding the quadratic variable Cylinder to our model resulted in a significant increase in our R-squared value. Our model now explains **91**% of the variance. 
+Adding the quadratic variable Cylinder to our model resulted in a significant increase in our R-squared value. Our model now explains **91**% of the variance in the data. 
 
 
 #### Residual Analysis
 
-```{r, residualsHist}
-# Plot a histogram of the multiple regression model's residuals.
-hist(priceMultipleModel$residuals, main = 'Histogram of Residuals')
-```
-
-
 ```{r, residualsScatter}
-plot(priceMultipleModel$residuals, main = 'Scatter Plot of Residuals')
-abline(a = 0, b = 0, col = "red")
+plot(priceMultipleModel$fitted.values, priceMultipleModel$residuals,
+     xlab = 'Fitted Values', ylab = 'Residuals', main = 'Residuals vs. Fitted')
+abline(h = 0)
 ```
+
+
 
 ```{r, residualsQQPlot}
 qqnorm(priceMultipleModel$residuals)
 qqline(priceMultipleModel$residuals)
 ```
 
+#### Summary
+Based on the $R^2$ value of our final model, the model explains **91**% of the variance in the data which is good.
 
+The Residuals vs. Fitted plot above displays some outliers in the data, but overall the variability is fairly consistent.
+Additionally, the QQ plot, while not perfect, does show consistency with outliers at each end of the line.
+Therefore, It seems that our multiple linear model is an appropriate model for predicting the price of cars.
 
 
 
