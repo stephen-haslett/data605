@@ -12,8 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load the necessary libraries.
 library(ggplot2)
 library(knitr)
-library(kableExtra)
-library(dplyr)
 ```
 
 #### Problem 1:
@@ -23,7 +21,7 @@ Use integration by substitution to solve the integral below:
 $\int 4e^{-7x}dx$
 
 
-##### Solution 1:
+#### Solution 1:
 
 Let $u = -7x$
 
@@ -42,7 +40,7 @@ $\frac{-4}{7}e^{-7x} + C$
 Biologists are treating a pond contaminated with bacteria. The level of contamination is changing at a rate of $\frac{\text{d}N}{\text{d}t} = -\frac{3150}{t^4} - 220$ bacteria per cubic centimeter per day, where $t$ is the number of days since treatment began. Find a function $N(t)$ to estimate the level of contamination if the level after day 1 was 6530 per cubic centimeter.
 
 
-##### Solution 2:
+#### Solution 2:
 
 
 $\frac{\text{d}N}{\text{d}t} = -\frac{3150}{t^4} - 220 \ \to \ \text{d}N = (-\frac{3150}{t^4}-220)\text{d}t$
@@ -75,7 +73,7 @@ Find the total area of the red rectangles in the figure below, where the equatio
 ![](/Users/stephenhaslett/Data605/graph.png)
 
 
-##### Solution 3:
+#### Solution 3:
 
 $A = \int_{4.5}^{8.5}(2x - 9)dx$
 
@@ -90,7 +88,7 @@ Find the area of the region bounded by the graphs of the given equations.
 $y = x^2 -2x -2, \ \ \ y = x + 2$
 
 
-##### Solution 4:
+#### Solution 4:
 
 ```{r, solution4}
 curve(x^2 - 2*x - 2, -1, 4, col = 'purple')
@@ -124,7 +122,7 @@ There is a fixed cost of $8.25 for each order. Find the lot size and the number 
 inventory costs.
 
 
-##### Solution 5:
+#### Solution 5:
 
 $Orders(x) * LotSize(n) = 110$
 
@@ -155,6 +153,60 @@ $25 = x^2$
 
 
 **Answer:** To minimize inventory costs, the store should make **5** orders of **22** irons per year.
+
+\ 
+
+#### Problem 6:
+
+Use integration by parts to solve the integral below:
+
+$\int \ln(9x)\cdot x^6 \ dx$
+
+#### Solution 6:
+
+Let $u = \ln(9x)$.
+
+Using the chain rule $du = \frac{1}{9x} \cdot 9 \ dx = \frac{1}{x} \ dx$.
+
+Let $dv = x^6$, then $v = \int x^6 = \frac{x^7}{7}$.
+
+$\ln(9x)\cdot \frac{x^7}{7} - \int \frac{x^7}{7}\cdot \frac{1}{x} \ dx$
+
+$\ln(9x)\cdot \frac{x^7}{7} - \frac{1}{7} \int \frac{x^7}{x} \ dx = \ln(9x)\cdot \frac{x^7}{7} - \frac{1}{7} \int x^6 \ dx$
+
+$\ln(9x)\cdot \frac{x^7}{7} - \frac{1}{7} \Big(\frac{x^7}{7}\Big) + C$
+
+$= \ln(9x)\cdot \frac{x^7}{7} - \frac{x^7}{49} + C$
+
+\ 
+
+#### Problem 7:
+
+Determine whether $f(x)$ is a probability density function on the interval $[1, e^6]$. If not, determine the value of the definite integral.
+
+$f(x) = \frac{1}{6x}$
+
+#### Solution 7:
+
+In order for $f(x)$ to be a probability function, the area must sum to 1:
+
+$F(x) = \int_{1}^{e^6} f(x)dx = 1$
+
+$(x) = \frac{1}{6x}$
+
+$F(x) = \int_{1}^{e^6} \frac{1}{6x}dx$
+
+$F(x) = \frac{1}{6} \int_{1}^{e^6} \frac{1}{x}dx$
+
+$F(x) = \frac{1}{6} ln(x)|_1^{e^6}$
+
+$F(x) = \frac{1}{6} [ln(e^6) - ln(1)]$
+
+$F(x) = \frac{1}{6} [6-0] = 1$
+
+\ 
+
+**$f(x)$ does sum to 1, therefore f(x) is a probability density function on the interval [1,$e^6$]**.
 
 
 
