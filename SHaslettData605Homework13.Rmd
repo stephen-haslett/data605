@@ -1,0 +1,73 @@
+---
+title: "DATA 605 Homework 13"
+subtitle: "Assignment 13"
+author: "Stephen Haslett"
+date: "11/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the necessary libraries.
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+#### 1. Use integration by substitution to solve the integral below:
+
+$\int 4e^{-7x}dx$
+
+\ 
+
+##### 1. Solution:
+Let $u = -7x$
+
+$du = -7 dx$
+
+$dx = \frac{du}{-7}$
+
+$\frac{4}{-7}\int e^u du$
+
+$\frac{-4}{7}e^{-7x} + C$
+
+\ 
+
+#### 2. Biologists are treating a pond contaminated with bacteria. The level of contamination is changing at a rate of $\frac{\text{d}N}{\text{d}t} = -\frac{3150}{t^4} - 220$ bacteria per cubic centimeter per day, where $t$ is the number of days since treatment began. Find a function $N(t)$ to estimate the level of contamination if the level after day 1 was 6530 per cubic centimeter.
+
+\ 
+
+##### 2. Solution:
+
+
+$\frac{\text{d}N}{\text{d}t} = -\frac{3150}{t^4} - 220 \ \to \ \text{d}N = (-\frac{3150}{t^4}-220)\text{d}t$
+
+Find $N$
+
+$N = \int (-\frac{3150}{t^4}-220)\text{d}t \ \ = \int -3150(t^{-4}) \text{d}t - \int 220\text{d}t$
+
+
+Apply the power rule:
+
+$N = \frac{-3150}{-3}(t^{-3}) - 220t + C$.
+
+\ 
+
+Solve for $N(1) = 6530$:
+
+$N(1) \frac{-3150}{-3}(1^{-3}) - 220(1) + C = 6530$
+
+$C = 6530 - 1050 + 220 = 5700$.
+
+$N(t) = -1050(t^{-3}) - 200(t) + 5700$.
+
+
+
+
+
+
+```{r}
+```
+
