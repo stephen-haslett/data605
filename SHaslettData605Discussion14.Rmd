@@ -21,9 +21,9 @@ Find the arc length of the function on the given interval:
 
 5. $f(x) = \frac{1}{3}x^{\frac{3}{2}}-x^{\frac{1}{2}} \ on \ [0,1]$.
 
-**Answer**
+**Solution**
 
-Define the function in R and plot the curve.
+Define the function in R and plot the curve for a visual reference.
 ```{r exercise5FunctionAndPlot}
 # Define the function using R syntax.
 f <- function(x) {
@@ -38,5 +38,12 @@ curve(f(x), col = 'blue', ylab='f(x)')
 Now find the arc length of the function on the given interval using the __pracma__ library's [arclength()](https://www.rdocumentation.org/packages/pracma/versions/1.9.9/topics/arclength) function.
 
 ```{r exercise5Answer}
-
+# The arclength() function expects the first paremeter to be parameterized, so we
+# need to create a parameterize version of our function before passing it to arclength().
+par_function <- function(x) c(x, f(x))
+arclength(par_function, a = 0, b = 1)
 ```
+
+
+#### Answer
+**The arc length of the function on the given interval is**
