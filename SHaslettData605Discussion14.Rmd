@@ -41,9 +41,9 @@ Now find the arc length of the function on the given interval using the __pracma
 # The arclength() function expects the first paremeter to be parameterized, so we
 # need to create a parameterize version of our function before passing it to arclength().
 par_function <- function(x) c(x, f(x))
-arclength(par_function, a = 0, b = 1)
+arclength(par_function, 0, 1)
 ```
 
 
 #### Answer
-**The arc length of the function on the given interval is**
+**The arc length of the function on the given interval is 1.3**.
