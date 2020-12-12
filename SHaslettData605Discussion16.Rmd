@@ -1,0 +1,44 @@
+---
+title: "DATA 605 Discussion 16"
+subtitle: "Chapter 12.3, Exercises 9 - 26, Question 11, Page 711"
+author: "Stephen Haslett"
+date: "12/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\ 
+
+#### _Pick any exercise in Chapter 12 of the calculus textbook_.
+
+##### Question 11
+
+**_Find $fx, fy, fxx, fyy, fxy$ and $fyx$ when $f(x, y) =\frac{x}{y}$_**
+
+**A. $\\[.1in]$**
+$fx = \frac{1}{y}$
+
+**B. $\\[.1in]$**
+$fy = \frac{-x}{y^2}$
+
+**C. $\\[.1in]$**
+$fxx = 0$
+
+**D. $\\[.1in]$**
+$fyy = \frac{-2^x}{y^3}$
+
+**E. $\\[.1in]$**
+$fxy = \frac{-1}{y^2}$
+
+**F. $\\[.1in]$**
+$fyx = \frac{-1}{y^2}$
+
+\ 
+
+#### _What were the most valuable elements you took away from this course_?
+
+Coming from a non mathmatical background, this course has given me a solid foundation on which to further research the concepts covered in the class and apply them to software engineering.
+In particular, I found the probability and linear regression sections of the course interesting as these concepts are valuable when it comes to writing predictive software applications.
+
