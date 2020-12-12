@@ -1,0 +1,60 @@
+---
+title: "DATA 605 Homework 14"
+subtitle: "Assignment 14"
+author: "Stephen Haslett"
+date: "12/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the pracma.
+library(pracma)
+```
+
+
+### Assignment Instructions
+
+This week, we'll work out some Taylor Series expansions of popular functions.
+
+
+$f(x) = \frac{1}{(1-x)}$
+
+$f(x) = e^x$
+
+$f(x) = \ln(1 + x)$
+
+For each function, only consider its valid ranges as indicated in the notes when you are computing the Taylor Series expansion.
+
+\ 
+
+#### 1. $f(x) = \frac{1}{(1-x)}$
+
+**When x = 0**
+
+$1 + x + x^2 + x^3 + x^4 + x^5 + \cdot\cdot\cdot \\$
+
+$\frac{1}{(1-x)} = \sum_{n = 0}^{\infty}x^n \ \ \ x \in (-1, 1)$
+
+\ 
+
+#### 2. $f(x) = e^x$
+
+**When x = 0**
+
+$1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdot\cdot\cdot \\$
+
+$e^x = \sum_{n = 0}^{\infty} \frac{x^n}{n!} \ \ \ x \in \mathbb{R}$
+
+\ 
+
+#### 3. $f(x) = \ln(1 + x)$
+
+**When x = 0**
+
+$0 + x - \frac{1}{2!}x^2 + \frac{2}{3!}x^3 - \frac{6}{4!}x^4 + \cdot\cdot\cdot \\$
+
+$\ln(1 + x) = \sum_{n = 0}^{\infty}(-1)^{n-1}\frac{x^n}{n} \ \ \ x \in (-1, 1]$
+
+

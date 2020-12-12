@@ -1,0 +1,20 @@
+---
+title: "DATA 605 Discussion 15"
+subtitle: "Chapter 8.8, Exercises 8.8, Exercise 24, Page 496"
+author: "Stephen Haslett"
+date: "12/07/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercise 24
+Write out the first 5 terms of the Binomial series with the given k-value.
+
+#### $k = 4$
+
+When $k = 4$, the first 5 terms of the Binomial series with the given k-value are as follows:
+
+$1+k+{ \left( 1+x \right)  }^{ k }+k{ \left( 1+k \right)  }^{ k-1 }+k\left( k-1 \right) { \left( 1+x \right)  }^{ k-2 }$
