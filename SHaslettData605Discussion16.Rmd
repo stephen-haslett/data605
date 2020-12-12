@@ -40,5 +40,5 @@ $fyx = \frac{-1}{y^2}$
 #### _What were the most valuable elements you took away from this course_?
 
 Coming from a non mathmatical background, this course has given me a solid foundation on which to further research the concepts covered in the class and apply them to software engineering.
-In particular, I found the probability and linear regression sections of the course interesting as these concepts are valuable when it comes to writing predictive software applications.
+In particular, I found the probability and linear regression sections of the course interesting as these concepts are valuable when it comes to writing predictive software applications; something that greatly interests me.
 
