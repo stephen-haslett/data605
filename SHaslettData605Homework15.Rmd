@@ -26,6 +26,7 @@ round(coef(lm(y ~ x, regression)), 2)
 
 **Answer:** The equation of the regression line is $y = -14.8 + 4.26x$
 
+\ 
 
 ##### 2. Find all local maxima, local minima, and saddle points for the function given below. Write your answer(s) in the form $( x, y, z )$. Separate multiple points with a comma.
 
@@ -111,19 +112,55 @@ Now use the Second Derivative test to determine if the points are minimum, maxim
 
 - $D = -144y^2(x,y)$
 
-**Answer:** As per the Second Derivative Test, $D(x,y) < 0$ for both $(-4,2,-64)$ and $(4,-2,64)$, so therefore both critical points are saddle point.
+**Answer:** As per the Second Derivative Test, $D(x,y) < 0$ for both $(-4,2,-64)$ and $(4,-2,64)$, so therefore both critical points are saddle points.
 
+\ 
 
 ##### 3. A grocery store sells two brands of a product, the "house" brand and a "name" brand. The manager estimates that if she sells the "house" brand for $x$ dollars and the "name" brand for $y$ dollars, she will be able to sell $81 - 21x + 17y$ units of the "house" brand and $40 + 11x - 23y$ units of the "name" brand.
 
 **Step 1.** Find the revenue function $R ( x, y )$.
 
+**Answer**:
+
+The revenue function is unit cost multiplied by units sold for the house/name brand and can be defined as follows:
+
+$$R(x,y) = x(81 - 21x + 17y) + y(40 + 11x -23y)$$
+
 
 **Step 2.** What is the revenue if she sells the "house" brand for \$2.30 and the "name" brand for \$4.10?
+
+**Answer**:
+
+We can find the revenue by substituting $x$ in the above function with the price of the house brand (**$2.30**), and $y$ with the price of the name brand (**$4.10**).
+
+```{r, Step2Answer}
+x <- 2.3
+y <- 4.1
+
+revenue <- (x * (81 - (21 * x) + (17 * y))) + (y * (40 + (11 * x) - (23 * y)))
+revenue
+```
+
+
+**The revenue is $116.62.**
 
 \ 
 
 ##### 4. A company has a plant in Los Angeles and a plant in Denver. The firm is committed to produce a total of 96 units of a product each week. The total weekly cost is given by $C(x, y) = \frac{1}{6} x^2 + \frac{1}{6} y^2 + 7x + 25y + 700$, where $x$ is the number of units produced in Los Angeles and $y$ is the number of units produced in Denver. How many units should be produced in each plant to minimize the total weekly cost?
+
+If $x + y = 96$, then $y = 96 - x$.
+
+$$C(x,y) = \frac{1}{6}x^2 + \frac{1}{6}y^2 + 7x + 25y + 700$$
+$$C(x,y) = \frac{1}{6}x^2 + \frac{1}{6}(96-x)^2 + 7x + 25(96-x) + 700$$
+$$C(x,y) = \frac{1}{6}x^2 + \frac{1}{6}(9216 - 192x + x^2) + 7x + 2400 - 25x + 700$$
+$$C(x,y) = \frac{1}{6}x^2 + 1536 - 32x + \frac{x^2}{6} + 7x + 2400 - 25x + 700$$
+$$C(x,y) = \frac{1}{3}x^2 - 50x + 4636$$
+$$C' = \frac{2}{3}x - 50$$
+$$0 = \frac{2}{3}x - 50$$
+$$50 = \frac{2}{3}x$$
+$$75 = x$$
+
+**Answer**: 75 units should be produced in Los Angeles and the remaining 21 units should be produced in Denver to minimize the total weekly cost.
 
 \ 
 
@@ -131,4 +168,10 @@ Now use the Second Derivative test to determine if the points are minimum, maxim
 
 $$\iint_{R}(e^8x + 3y) \ dA; R: 2 \leq x \leq 4 \ and \ 2 \leq y \leq 4$$
 
-Write your answer in exact form without decimals.
+**Answer**:
+
+$$\int_2^4\int_2^4(e^{8x + 3y})dx dy$$
+$$int_2^4(1/8)(e^{16} - 1)e^{3y + 16} dy$$
+$$e^{16} - 1) / 24 e^{3y + 16} + C$$
+$$(e^{44} - e^{28}) / 24 - (e^{38} - e^{22}) / 24$$
+$$(1 / 24)(e^{22} - e^{28} - e^{38} + e^{44})$$
