@@ -93,7 +93,26 @@ Substitute $(-4,2)$ and $(4,-2)$:
 
 - $z = 64$
 
-**According to the above calcualtions, the critical points are $(-4, 2, -64)$ and $(4, -2, 64)$**
+**The critical points are $(-4, 2, -64)$ and $(4, -2, 64)$**
+
+Now use the Second Derivative test to determine if the points are minimum, maximum, or saddle.
+
+- $f_{xx} = 0$
+
+- $f_{yy} = -12x - 48y$
+
+- $f_{xy} = - 12y$
+
+- $D = f_{xx}(x,y) * f_{yy}(x,y) - f_{xy}^2(x,y)$
+
+- $D = 0(x,y) * (-12x - 48y(x,y)) - (- 12y)^2(x,y)$
+
+- $D = 0 - 144y^2(x,y)$
+
+- $D = -144y^2(x,y)$
+
+**Answer:** As per the Second Derivative Test, $D(x,y) < 0$ for both $(-4,2,-64)$ and $(4,-2,64)$, so therefore both critical points are saddle point.
+
 
 ##### 3. A grocery store sells two brands of a product, the "house" brand and a "name" brand. The manager estimates that if she sells the "house" brand for $x$ dollars and the "name" brand for $y$ dollars, she will be able to sell $81 - 21x + 17y$ units of the "house" brand and $40 + 11x - 23y$ units of the "name" brand.
 
