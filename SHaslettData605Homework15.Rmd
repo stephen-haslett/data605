@@ -10,18 +10,92 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \ 
 
-#### 1. Find the equation of the regression line for the given points. Round any final values to the nearest hundredth, if necessary.
+##### 1. Find the equation of the regression line for the given points. Round any final values to the nearest hundredth, if necessary.
 
 $$( 5.6, 8.8 ), ( 6.3, 12.4 ), ( 7, 14.8 ), ( 7.7, 18.2 ), ( 8.4, 20.8 )$$
 
+```{r, Answer1}
+x <- c(5.6, 6.3, 7, 7.7, 8.4)
+y <- c(8.8, 12.4, 14.8, 18.2, 20.8)
 
-#### 2. Find all local maxima, local minima, and saddle points for the function given below. Write your answer(s) in the form $( x, y, z )$. Separate multiple points with a comma.
+regression <- data.frame (x,y)
+
+# Round to the nearest hundredth.
+round(coef(lm(y ~ x, regression)), 2)
+```
+
+**Answer:** The equation of the regression line is $y = -14.8 + 4.26x$
+
+
+##### 2. Find all local maxima, local minima, and saddle points for the function given below. Write your answer(s) in the form $( x, y, z )$. Separate multiple points with a comma.
 
 $$f ( x, y ) = 24x - 6xy^2 - 8y^3$$
 
 
+**Answer:**
 
-#### 3. A grocery store sells two brands of a product, the "house" brand and a "name" brand. The manager estimates that if she sells the "house" brand for $x$ dollars and the "name" brand for $y$ dollars, she will be able to sell $81 - 21x + 17y$ units of the "house" brand and $40 + 11x - 23y$ units of the "name" brand.
+Partial derivatives:
+
+- $f_x = 24 - 6y^2$
+
+- $f_y = -12xy -24y^2$
+
+Set $f_x$ to 0 and solve for $y$:
+
+- $24 - 6_y^2 = 0$
+
+- $24 = 6_y^2$
+
+- $4 = y^2$
+
+- $±2 = y$
+
+Set $f_y$ to 0 and substitute $y = 2$:
+
+- $−12xy − 24y^2 = 0$
+
+- $xy + 2y^2 = 0$
+
+- $x(2) + 2(2)^2 = 0$
+
+- $2_x + 8 = 0$
+
+- $2X = -8$
+
+- $x = -4$
+
+Substitute $y = -2$:
+
+- $x(-2) + 2(-2)^2 = 0$
+
+- $-2x + 8 = 0$
+
+- $−2x = −8$
+
+- $x = 4$
+
+
+Substitute $(x,y)$ for $z$:
+
+- $f(x,y) = 24x - 6xy^2 - 8y^3$
+
+Substitute $(-4,2)$ and $(4,-2)$:
+
+- $z = 24(-4) - 6(-4)(2)^2 - 8(2)^3$
+
+- $z = -96 + 96 - 64$
+
+- $z = -64$
+
+- $z = 24(4) - 6(4)(-2)^2 - 8(-2)^3$
+
+- $z = 96 - 96 + 64$
+
+- $z = 64$
+
+**According to the above calcualtions, the critical points are $(-4, 2, -64)$ and $(4, -2, 64)$**
+
+##### 3. A grocery store sells two brands of a product, the "house" brand and a "name" brand. The manager estimates that if she sells the "house" brand for $x$ dollars and the "name" brand for $y$ dollars, she will be able to sell $81 - 21x + 17y$ units of the "house" brand and $40 + 11x - 23y$ units of the "name" brand.
 
 **Step 1.** Find the revenue function $R ( x, y )$.
 
@@ -30,11 +104,11 @@ $$f ( x, y ) = 24x - 6xy^2 - 8y^3$$
 
 \ 
 
-#### 4. A company has a plant in Los Angeles and a plant in Denver. The firm is committed to produce a total of 96 units of a product each week. The total weekly cost is given by $C(x, y) = \frac{1}{6} x^2 + \frac{1}{6} y^2 + 7x + 25y + 700$, where $x$ is the number of units produced in Los Angeles and $y$ is the number of units produced in Denver. How many units should be produced in each plant to minimize the total weekly cost?
+##### 4. A company has a plant in Los Angeles and a plant in Denver. The firm is committed to produce a total of 96 units of a product each week. The total weekly cost is given by $C(x, y) = \frac{1}{6} x^2 + \frac{1}{6} y^2 + 7x + 25y + 700$, where $x$ is the number of units produced in Los Angeles and $y$ is the number of units produced in Denver. How many units should be produced in each plant to minimize the total weekly cost?
 
 \ 
 
-#### 5. Evaluate the double integral on the given region.
+##### 5. Evaluate the double integral on the given region.
 
 $$\iint_{R}(e^8x + 3y) \ dA; R: 2 \leq x \leq 4 \ and \ 2 \leq y \leq 4$$
 
