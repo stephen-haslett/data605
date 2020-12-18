@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
 ```
 \ 
 
@@ -35,46 +36,117 @@ Calculate as a minimum the below probabilities $a$ through $c$.  Assume the smal
 
 ```{r, probability}
 # Small x is estimated as the median of the X variable.
-x <- median(X)
+x <- round(median(X), 2)
+x
 
 # Small y is estimated as the 1st quartile of the Y variable.
-y <- quantile(Y, 0.25)
+y <- round(quantile(Y, 0.25), 2)
+y
 ```
+
+**Answer**: Small x is equal to **4.48** (median of the X variable), small y is equal to **1.45** (1st quartile of the Y variable). 
+
 
 A. $P(X>x \ | \ X>y)$
 
+**Interpretation**:
+
+_Probability that X is greater than its median given that X is greater than the first quartile of Y_.
+
+$$P(X>x \ | \ X>y) = \frac{P(X>x \ , \ X>y)}{P(X>y)}$$
+
 ```{r, probabilityA}
-segment_one <- (X > x)
-probability_X_gt_x <- (length(segment_one[segment_one == TRUE])) / (length(segment_one))
+# Define the events.
+event_one <- (X > x)
+event_two <- (X > y)
 
-segment_two <- (X > y)
-probability_X_gt_y <- (length(segment_two[segment_two == TRUE])) / (length(segment_two))
+# P(X>x and X>y).
+a_and_b <- length(X[event_one & event_two]) / length(X)
 
-probability_of_a <- ((probability_X_gt_x * probability_X_gt_y)) / (probability_X_gt_y)
-probability_of_a
+# P(X>y).
+b <- length(X[event_two]) / length(X)
+
+# P(X>x | X>y).
+probability <- a_and_b / b
+
+answer <- round(probability, 2)
+answer
 ```
 
-**Answer: $P(X > x | X > y) = 0.5$**
+**Answer: $P(X > x \ | \ X > y)$ = 0.53**
 
+\ 
 
 B. $P(X>x, Y>y)$
 
+**Interpretation**:
+
+_Probability that $X$ is greater than $x$, and $Y$ is greater than $y$_. 
+
 ```{r, probabilityB}
-part_one <- (X > x)
-probability_X_gt_x <- (length(part_one[part_one == TRUE])) / (length(part_one))
+# Define the events.
+event_one <- (X > x)
+event_two <- (Y > y)
 
-part_two <- (Y > y)
-probability_Y_gt_y <- (length(part_two[part_two == TRUE])) / (length(part_two))
+# P(X > x).
+X_gt_x <- length(X[event_one]) / length(X)
 
-probability_of_b <- (probability_X_gt_x) * (probability_Y_gt_y)
-probability_of_b
+# P(Y > y).
+Y_gt_y <- length(Y[event_two]) / length(Y)
+
+probability  <- X_gt_x * Y_gt_y
+
+answer <- round(probability, 2)
+answer
 ```
 
-**Answer: $P(X>x, Y>y)$ = 0.375**
+**Answer: $P(X>x, Y>y)$ = 0.37**
 
-C. $P(X<x | X>y)$
+\ 
+
+C. $P(X<x \ | \ X>y)$
+
+**Interpretation**:
+
+_Probability that $X$ is less than its median given that it is greater than the first quantile of $Y$_.
 
 ```{r, probabilityC}
+# Define the events.
+event_one <- (X < x)
+event_two <- (X > y)
 
+# P(X > x & X > y).
+a_and_b  <- length(X[event_one & event_two]) / length(X)
+
+# P(X > y).
+b <- length(X[event_two]) / length(X)
+
+probability <- a_and_b / b 
+
+answer <- round(probability, 2)
+answer
 ```
 
+**Answer: $P(X<x \ | \ X>y)$ = 0.47**
+
+\ 
+
+Investigate whether $P(X>x \ and \ Y>y) = P(X>x)P(Y>y)$ by building a table and evaluating the marginal and joint probabilities.
+
+```{r, probabilityTable}
+
+
+part_one <- (X > x)
+prob_X_gt_x <- (length(part_one[part_one == TRUE])) / (length(part_one))
+
+part_two <- (Y > y)
+prob_Y_gt_y <- (length(part_two[part_two == TRUE])) / (length(part_two))
+
+results_table <- data.table(
+  Event = c('(X>x)', '(Y>y)', '(X>x)*(Y>y)', '(X>x and Y>y)'),
+  Xx = c(prob_X_gt_x, prob_Y_gt_y, prob_X_gt_x * prob_Y_gt_y, prob_X_gt_x * prob_Y_gt_y),
+  Yy = c(prob_Y_gt_y, prob_X_gt_x, prob_X_gt_x * prob_Y_gt_y, prob_X_gt_x * prob_Y_gt_y)
+)
+
+results_table
+```
