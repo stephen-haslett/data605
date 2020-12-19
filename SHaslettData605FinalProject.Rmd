@@ -267,9 +267,18 @@ GarageArea <- training_dataset$GarageArea
 matrix_variables <- data.frame(LotArea, GrLivArea, GarageArea)
 
 # Create the correlation matrix.
-corrplot(cor(matrix_variables),
-         method = "shade",
-         title = 'Correlation Matrix of Three Quantative Variables',
-         mar = c(0, 0, 2, 0))
+corrplot(cor(matrix_variables), method = "shade")
 ```
+
+\ 
+
+**4. Test the hypotheses that the correlations between each pairwise set of variables is 0 and provide an 80% confidence interval.**
+
+```{r, hypothesisTesting}
+# Test GrLivArea vs LotArea using the Pearson method with an 80% confidence level.
+cor.test(training_dataset$LotArea, training_dataset$GrLivArea, method = 'pearson', conf.level = 0.80)
+```
+
+
+
 
