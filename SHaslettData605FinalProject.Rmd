@@ -165,9 +165,52 @@ With 79 explanatory variables describing (almost) every aspect of residential ho
 
 \ 
 
+**Import the training and test datasets and summarize them**.
+
+```{r, loadData}
+# Pull in the train and test datasets.
+training_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data605/data605-final-exam/train.csv')
+test_dataset <- read.csv('https://raw.githubusercontent.com/stephen-haslett/data605/data605-final-exam/test.csv')
+```
+
+\ 
+
+**Snapshot of the training dataset**.
+
+```{r, trainingSnapshot}
+head(training_dataset, 1)
+```
+
+
+**Summarize the training dataset**.
+
+```{r, trainingSummary}
+summary(training_dataset)
+```
+
+\ 
+
+**Snapshot of the test dataset**.
+
+```{r, testSnapshot}
+head(test_dataset, 1)
+```
+
+**Summarize the test dataset**.
+
+```{r, testSummary}
+summary(test_dataset)
+```
+
+\ 
+
 ##### Descriptive and Inferential Statistics
 
 **1. Provide univariate descriptive statistics and appropriate plots for the training data set**.
 
+```{r, salesPrice}
+# Summarize the training dataset's SalePrice variable.
+summary(training_dataset$SalePrice)
+```
 
 
