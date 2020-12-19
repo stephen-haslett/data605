@@ -7,7 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# Load required libraries.
 library(data.table)
+library(corrplot)
 
 # Disable scientific notation.
 options(scipen = 999)
@@ -251,3 +253,23 @@ garage_area <- training_dataset$GarageArea
 plot_data <- data.frame(sale_price, lot_area, gr_liv_area, garage_area)
 pairs(plot_data, main = 'Scatterplot Matrix', col = '#50394c')
 ```
+
+\ 
+
+**3. Derive a correlation matrix for any three quantitative variables in the dataset**.
+
+```{r, correlationMatrix}
+
+# Create a dataframe containing the 3 variables to include in the matrix.
+LotArea <- training_dataset$LotArea
+GrLivArea <- training_dataset$GrLivArea
+GarageArea <- training_dataset$GarageArea
+matrix_variables <- data.frame(LotArea, GrLivArea, GarageArea)
+
+# Create the correlation matrix.
+corrplot(cor(matrix_variables),
+         method = "shade",
+         title = 'Correlation Matrix of Three Quantative Variables',
+         mar = c(0, 0, 2, 0))
+```
+
