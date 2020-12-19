@@ -272,13 +272,36 @@ corrplot(cor(matrix_variables), method = "shade")
 
 \ 
 
-**4. Test the hypotheses that the correlations between each pairwise set of variables is 0 and provide an 80% confidence interval.**
+**4. Test the hypotheses that the correlations between each pairwise set of variables is 0 and provide an 80% confidence interval**.
 
-```{r, hypothesisTesting}
-# Test GrLivArea vs LotArea using the Pearson method with an 80% confidence level.
+_4(a). Test LotArea Vs. GrLivArea_.
+
+```{r, hypothesisTestingA}
+# Test LotArea Vs. GrLivArea using the Pearson method with 80% confidence level.
 cor.test(training_dataset$LotArea, training_dataset$GrLivArea, method = 'pearson', conf.level = 0.80)
 ```
 
 
+_4(b). Test LotArea vs GarageArea_.
+
+```{r, hypothesisTestingB}
+# Test LotArea Vs. GarageArea vs with 80% confidence level.
+cor.test(training_dataset$LotArea, training_dataset$GarageArea, method = 'pearson', conf.level = 0.80)
+```
 
 
+_4(c). Test GarageArea Vs. GrLivArea_.
+
+
+```{r, hypothesisTestingC}
+# Test GarageArea Vs. GrLivArea with 80% confidence level.
+cor.test(training_dataset$GarageArea, training_dataset$GrLivArea, method = 'pearson', conf.level = 0.80)
+```
+
+\ 
+
+**5. Discuss the meaning of your analysis. Would you be worried about familywise error? Why or why not**?
+
+From the above results, the correlation between the selected variables is not equal to 0 in all 3 comparisons. Additionally, the p-values for all 3 samples are less than 0.05, so we can reject the null hypothesis.
+
+Due to the fact that the correlation tests result in low p-values, I would not be worried about family-wise errors when measuring relationships across the 3 attributes.
