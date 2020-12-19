@@ -8,6 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(data.table)
+
+# Disable scientific notation.
+options(scipen = 999)
 ```
 \ 
 
@@ -213,4 +216,38 @@ summary(test_dataset)
 summary(training_dataset$SalePrice)
 ```
 
+\ 
 
+**Create a histogram of sales prices**.
+
+```{r, salesPricePlot}
+hist(training_dataset$SalePrice,
+     xlab = 'Sale Price',
+     main = 'Distribution of Sales Prices',
+     col = 'darkgreen')
+```
+
+\ 
+
+**Create a QQ plot of sales prices**.
+
+```{r, salesPriceQQPlot}
+qqnorm(training_dataset$SalePrice, col = 'darkred')
+qqline(training_dataset$SalePrice)
+```
+
+\ 
+
+**2. Provide a scatterplot matrix for at least two of the independent variables and the dependent variable**.
+
+```{r, scatterplotMatrix}
+# Define the variables to include in the matrix.
+sale_price <- training_dataset$SalePrice
+lot_area <- training_dataset$LotArea
+gr_liv_area <- training_dataset$GrLivArea
+garage_area <- training_dataset$GarageArea
+
+# Plot the matrix.
+plot_data <- data.frame(sale_price, lot_area, gr_liv_area, garage_area)
+pairs(plot_data, main = 'Scatterplot Matrix', col = '#50394c')
+```
