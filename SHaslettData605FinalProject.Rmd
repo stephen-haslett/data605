@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load required libraries.
 library(data.table)
 library(corrplot)
+library(matrixcalc)
 
 # Disable scientific notation.
 options(scipen = 999)
@@ -341,6 +342,11 @@ round(precision_x_correlation, 2)
 \ 
 
 **3. Conduct LU decomposition on the matrix**.
+
+```{r, luDecomposition}
+# Perform LU decomposition on the matrix.
+lu.decomposition(inverted_matrix)
+```
 
 \ 
 
