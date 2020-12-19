@@ -267,7 +267,8 @@ GarageArea <- training_dataset$GarageArea
 matrix_variables <- data.frame(LotArea, GrLivArea, GarageArea)
 
 # Create the correlation matrix.
-corrplot(cor(matrix_variables), method = "shade")
+cor_matrix <- cor(matrix_variables)
+corrplot(cor_matrix, method = "shade")
 ```
 
 \ 
@@ -305,3 +306,42 @@ cor.test(training_dataset$GarageArea, training_dataset$GrLivArea, method = 'pear
 From the above results, the correlation between the selected variables is not equal to 0 in all 3 comparisons. Additionally, the p-values for all 3 samples are less than 0.05, so we can reject the null hypothesis.
 
 Due to the fact that the correlation tests result in low p-values, I would not be worried about family-wise errors when measuring relationships across the 3 attributes.
+
+\ 
+
+##### Linear Algebra and Correlation
+
+**1. Invert your correlation matrix from above**.
+
+```{r, invertedMatrix}
+# Invert the matrix.
+inverted_matrix <- solve(cor_matrix)
+round(inverted_matrix, 2)
+```
+
+\ 
+
+**2. Multiply the correlation matrix by the precision matrix, and then multiply the precision matrix by the correlation matrix**.
+
+_2(a). Multiply the correlation matrix by the precision matrix_.
+
+```{r, mutiplyCorPrecMatrices}
+correlation_x_precision <- cor_matrix %*% inverted_matrix
+round(correlation_x_precision, 2)
+```
+
+
+_2(b). Multiply the precision matrix by the correlation matrix_.
+
+```{r, mutiplyPrecCorMatrices}
+precision_x_correlation <- inverted_matrix %*% cor_matrix
+round(precision_x_correlation, 2)
+```
+
+\ 
+
+**3. Conduct LU decomposition on the matrix**.
+
+\ 
+
+##### Calculus-Based Probability & Statistics
