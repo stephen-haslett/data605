@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(data.table)
 library(corrplot)
 library(matrixcalc)
+library(MASS)
 
 # Disable scientific notation.
 options(scipen = 999)
@@ -156,6 +157,8 @@ results_table <- data.table(
 
 results_table
 ```
+
+**Answer**: They are both equal.
 
 \ 
 
@@ -351,3 +354,67 @@ lu.decomposition(inverted_matrix)
 \ 
 
 ##### Calculus-Based Probability & Statistics
+
+**1. Select a variable in the Kaggle.com training dataset that is skewed to the right, shift it so that the minimum value is absolutely above zero if necessary. Then load the MASS package and run fitdistr to fit an exponential probability density function**.
+
+```{r, Calculsus1}
+# Select the right skewed TotalBsmtSF variable from the training dataset
+# and run fitdistr to fit an exponential probability density function.
+fit <- fitdistr(training_dataset$TotalBsmtSF, "exponential")
+fit
+```
+
+** 2. Find the optimal value of $\lambda$ for this distribution, and then take 1000 samples from this exponential distribution using this value (e.g., rexp(1000, $\lambda$))**.
+
+```{r, Calculsus2A}
+# Check the names that are available in the fit.
+names(fit)
+```
+
+```{r, Calculsus2B}
+lambda <- fit$estimate
+samples <- rexp(1000, lambda)
+```
+
+Plot a histogram and compare it with a histogram of your original variable.
+
+```{r, Calculsus2C}
+# Histrgram of samples.
+hist(samples, breaks = 100)
+```
+
+
+```{r, Calculsus2E}
+# Histrgram of original variable.
+original_variable <- training_dataset$TotalBsmtSF
+hist(original_variable, breaks = 100)
+```
+
+**Conclusion:**
+
+The histogram of samples produces a less skewed distribution than that of the original variable.
+
+
+**3a. Using the exponential pdf, find the 5th and 95th percentiles using the cumulative distribution function (CDF)**.
+
+```{r, pdf}
+quantile(samples, probs = c(0.05, 0.95))
+```
+
+
+**3b. Also generate a 95% confidence interval from the empirical data, assuming normality**.
+
+```{r, confidence}
+empirical_data <- training_dataset$TotalBsmtSF
+mean(empirical_data)
+
+normality <-rnorm(length(empirical_data), mean(empirical_data), sd(empirical_data))
+hist(normality)
+```
+
+
+**3c. Finally, provide the empirical 5th percentile and 95th percentile of the data**.
+
+```{r, final}
+quantile(normality, probs = c(0.05, 0.95))
+```
